@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export const Hero = () => {
     return (
-        <main className="w-full flex flex-col items-center px-6 md:px-16 md:justify-center md:h-[calc(100vh-108px)] md:min-h-[700px] lg:h-auto lg:min-h-0">
+        <main className="w-full flex flex-col items-center px-6 mb-12 md:px-16 md:justify-center md:h-[calc(100vh-156px)] md:min-h-[700px] md:mb-24 lg:h-auto lg:min-h-0 lg:mb-40">
             <div className="w-full flex flex-col items-center mb-12">
                 <h1 className="text-4xl text-white font-bold text-center mb-6 md:text-5xl md:max-w-2xl lg:text-6xl lg:max-w-3xl">
                     Precisando de um{" "}

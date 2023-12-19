@@ -1,0 +1,44 @@
+import Image from "next/image";
+import { Monitor } from "lucide-react";
+
+export const About = () => {
+    return (
+        <section className="w-full px-6 flex flex-col md:px-16 md:gap-y-12 lg:container lg:mx-auto lg:flex-row lg:justify-between lg:items-center">
+            <div className="w-full flex gap-x-5 md:max-w-lg lg:max-w-2xl">
+                <span className="bg-[#1161DA] rounded-full p-3 flex items-center justify-center h-fit w-fit">
+                    <Monitor color="white" size={25} />
+                </span>
+
+                <div className="flex flex-col gap-y-6">
+                    <h2 className="text-3xl text-white font-bold md:text-4xl">
+                        Uma{" "}
+                        <strong className="bg-gradient-to-r from-[#3093EE] to-[#23F6DD] text-transparent bg-clip-text">
+                            agência criativa
+                        </strong>{" "}
+                        criada para construir{" "}
+                        <strong className="bg-gradient-to-r from-[#1161DA] to-[#19D0F0] text-transparent bg-clip-text">
+                            marcas modernas.
+                        </strong>
+                    </h2>
+
+                    <p className="text-base text-white/90 leading-[27px]">
+                        Somos uma agência de marketing digital que trabalha individualmente com cada
+                        cliente. Utilizamos estratégias para conectar sua marca com o consumidor de
+                        forma humanizada. Somos parceiros nos projetos e vibramos com cada
+                        conquista. Otimistas na essência, nosso objetivo só é alcançado depois do
+                        seu.
+                    </p>
+                </div>
+            </div>
+
+            <div className="relative hidden md:block md:mx-auto aspect-square w-1/2 lg:w-1/3">
+                <Image
+                    src="/images/about-illustration.png"
+                    alt="Uma agência criativa criada para construir marcas modernas."
+                    fill
+                    className="object-contain"
+                />
+            </div>
+        </section>
+    );
+};

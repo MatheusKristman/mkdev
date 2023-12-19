@@ -17,7 +17,7 @@ export const Header = () => {
     const { openMenu } = useHeaderStore();
 
     return (
-        <header className="w-full px-6 pt-4 mb-12 flex items-center justify-between md:px-16 lg:mx-auto lg:container lg:mb-24">
+        <header className="w-full px-6 pt-4 mb-12 flex items-center justify-between md:px-16 md:mb-24 lg:mx-auto lg:container lg:mb-40">
             <div className="relative h-9 w-20 md:h-11 md:w-24">
                 <Image src="/images/logo.png" alt="MKDev" fill className="object-contain" />
             </div>

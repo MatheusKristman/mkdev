@@ -28,7 +28,7 @@ export const HeaderMobileMenu = () => {
                         animate="animate"
                         exit="exit"
                         variants={headerMobileMenuContainer}
-                        className="absolute w-full h-full top-0 bottom-0 left-0 right-0 lg:hidden bg-gray-primary/30 backdrop-blur px-6 md:px-16 py-4 flex flex-col"
+                        className="absolute z-50 w-full h-full top-0 bottom-0 left-0 right-0 lg:hidden bg-gray-primary/30 backdrop-blur px-6 md:px-16 py-4 flex flex-col"
                     >
                         <div className="w-full flex items-center justify-between mb-16">
                             <div className="relative h-9 w-20 md:h-11 md:w-24">
