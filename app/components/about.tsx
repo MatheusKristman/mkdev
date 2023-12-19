@@ -3,9 +3,9 @@ import { Monitor } from "lucide-react";
 
 export const About = () => {
     return (
-        <section className="w-full px-6 flex flex-col md:px-16 md:gap-y-12 lg:container lg:mx-auto lg:flex-row lg:justify-between lg:items-center">
+        <section className="w-full px-6 mb-12 flex flex-col md:px-16 md:mb-24 md:gap-y-12 lg:mb-36 lg:container lg:mx-auto lg:flex-row lg:justify-between lg:items-center">
             <div className="w-full flex gap-x-5 md:max-w-lg lg:max-w-2xl">
-                <span className="bg-[#1161DA] rounded-full p-3 flex items-center justify-center h-fit w-fit">
+                <span className="bg-[#1161DA] rounded-full p-3 flex items-center justify-center h-fit w-fit shadow-[0px_6px_13px_#126CB1]">
                     <Monitor color="white" size={25} />
                 </span>
 
