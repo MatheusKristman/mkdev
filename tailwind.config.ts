@@ -20,6 +20,11 @@ module.exports = {
                 "home-desktop": "url('/images/home-bg-desktop.png')",
                 "home-tablet": "url('/images/home-bg-tablet.png')",
                 "home-mobile": "url('/images/home-bg-mobile.png')",
+                "testimonial-mobile": "url('/images/testimonial-bg-mobile.png')",
+                "testimonial-tablet": "url('/images/testimonial-bg-tablet.png')",
+                "testimonial-desktop": "url('/images/testimonial-bg-desktop.png')",
+                "cta-top-left-illustration": "url('/images/cta-top-left-illustration.png')",
+                "cta-bottom-right-illustration": "url('/images/cta-bottom-right-illustration.png')",
             },
             colors: {
                 "gray-primary": "#0C1017",
