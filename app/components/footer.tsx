@@ -16,7 +16,7 @@ export const Footer = () => {
     const pathname = usePathname();
 
     return (
-        <footer className="w-full bg-[#141B26] pt-64 pb-6 lg:pt-72">
+        <footer className="w-full bg-[#141B26] pb-6">
             <div className="relative w-full px-6 md:px-16 lg:container lg:mx-auto">
                 <CTA />
 
