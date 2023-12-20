@@ -16,8 +16,6 @@ interface TestimonialCardProps {
     isBottom?: boolean;
 }
 
-// TODO criar função de scroll para animar os layers atras do card, e adicionar a variavel isRight e isBottom na props
-
 export const TestimonialCard = ({
     imageUrl,
     name,
