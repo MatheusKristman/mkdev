@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Lato } from "next/font/google";
 import { AlignRight, ChevronDown } from "lucide-react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 import { cn } from "@/lib/utils";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
@@ -15,13 +15,28 @@ const lato = Lato({ subsets: ["latin"], weight: ["400", "700", "900"] });
 
 export const Header = () => {
     const pathname = usePathname();
+    const router = useRouter();
     const { openMenu } = useHeaderStore();
     const { openContactModal } = useModalStore();
+
+    function handleLogoClick() {
+        if (pathname === "/") {
+            return;
+        }
+
+        router.push("/");
+    }
 
     return (
         <header className="w-full px-6 pt-4 mb-12 flex items-center justify-between md:px-16 md:mb-24 lg:mx-auto lg:container lg:mb-40">
             <div className="relative h-9 w-20 md:h-11 md:w-24">
-                <Image src="/images/logo.png" alt="MKDev" fill className="object-contain" />
+                <Image
+                    src="/images/logo.png"
+                    alt="MKDev"
+                    fill
+                    className="object-contain cursor-pointer"
+                    onClick={handleLogoClick}
+                />
             </div>
 
             <button

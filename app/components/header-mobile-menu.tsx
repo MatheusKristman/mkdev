@@ -31,8 +31,12 @@ export const HeaderMobileMenu = () => {
 
         return () => {
             document.documentElement.style.overflowY = "unset";
+
+            if (isMenuOpen) {
+                closeMenu();
+            }
         };
-    }, [isMenuOpen]);
+    }, [isMenuOpen, closeMenu]);
 
     function openModal() {
         closeMenu();
