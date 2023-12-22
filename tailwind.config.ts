@@ -25,6 +25,12 @@ module.exports = {
                 "testimonial-desktop": "url('/images/testimonial-bg-desktop.png')",
                 "cta-top-left-illustration": "url('/images/cta-top-left-illustration.png')",
                 "cta-bottom-right-illustration": "url('/images/cta-bottom-right-illustration.png')",
+                "services-desktop": "url('/images/services-bg-desktop.png')",
+                "services-tablet": "url('/images/services-bg-tablet.png')",
+                "services-mobile": "url('/images/services-bg-mobile.png')",
+                "projects-desktop": "url('/images/projects-bg-desktop.png')",
+                "projects-tablet": "url('/images/projects-bg-tablet.png')",
+                "projects-mobile": "url('/images/projects-bg-mobile.png')",
             },
             colors: {
                 "gray-primary": "#0C1017",
