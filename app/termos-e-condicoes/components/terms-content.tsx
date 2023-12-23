@@ -71,8 +71,8 @@ export const TermsContent = () => {
                         </li>
 
                         <li className={cn(desc)}>
-                            transferir os materiais para outra pessoa ou 'espelhe' os materiais em
-                            qualquer outro servidor.
+                            transferir os materiais para outra pessoa ou &apos;espelhe&apos; os
+                            materiais em qualquer outro servidor.
                         </li>
                     </ol>
 
@@ -95,10 +95,10 @@ export const TermsContent = () => {
                 <div className={cn(infoWrapper)}>
                     <ol className={cn(descList, "list-decimal ml-8")}>
                         <li className={cn(desc)}>
-                            Os materiais no site da MKDev são fornecidos 'como estão'. MKDev não
-                            oferece garantias, expressas ou implícitas, e, por este meio, isenta e
-                            nega todas as outras garantias, incluindo, sem limitação, garantias
-                            implícitas ou condições de comercialização, adequação a um fim
+                            Os materiais no site da MKDev são fornecidos &apos;como estão&apos;.
+                            MKDev não oferece garantias, expressas ou implícitas, e, por este meio,
+                            isenta e nega todas as outras garantias, incluindo, sem limitação,
+                            garantias implícitas ou condições de comercialização, adequação a um fim
                             específico ou não violação de propriedade intelectual ou outra violação
                             de direitos.
                         </li>
