@@ -3,8 +3,14 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 import { servicesData } from "@/constants/services";
+import {
+    titleAnimation,
+    wrapperAnimation,
+    boxAnimation,
+} from "@/constants/framer/services/services-page-animation";
 
 import "swiper/css";
 import "swiper/css/pagination";
@@ -12,14 +18,24 @@ import "swiper/css/pagination";
 export const ServicesContent = () => {
     return (
         <section className="w-full flex flex-col gap-y-12 pb-40 px-6 md:px-16 lg:container lg:mx-auto">
-            <h2 className="text-white text-4xl text-center font-bold md:text-5xl">
+            <motion.h2
+                initial="initial"
+                animate="animate"
+                variants={titleAnimation}
+                className="text-white text-4xl text-center font-bold md:text-5xl"
+            >
                 Conheça os nossos{" "}
                 <strong className="text-transparent bg-clip-text bg-gradient-to-r from-[#7236DE] to-[#D285DE]">
                     serviços
                 </strong>
-            </h2>
+            </motion.h2>
 
-            <div className="lg:hidden">
+            <motion.div
+                initial="initial"
+                animate="animate"
+                variants={wrapperAnimation}
+                className="lg:hidden"
+            >
                 <Swiper
                     modules={[Pagination]}
                     spaceBetween={50}
@@ -49,11 +65,19 @@ export const ServicesContent = () => {
                         </SwiperSlide>
                     ))}
                 </Swiper>
-            </div>
+            </motion.div>
 
-            <div className="hidden lg:grid w-full grid-cols-3 grid-rows-3 gap-5">
+            <motion.div
+                initial="initial"
+                animate="animate"
+                variants={wrapperAnimation}
+                className="hidden lg:grid w-full grid-cols-3 grid-rows-3 gap-5"
+            >
                 {servicesData.map((service) => (
-                    <div className="w-full flex flex-col items-center justify-center bg-slate-900 border border-slate-600 p-9 rounded-lg hover:bg-slate-800 transition-colors">
+                    <motion.div
+                        variants={boxAnimation}
+                        className="w-full flex flex-col items-center justify-center bg-slate-900 border border-slate-600 p-9 rounded-lg hover:bg-slate-800 transition-colors"
+                    >
                         <div className="relative w-16 h-16 mx-auto mb-7">
                             <Image
                                 src={service.url}
@@ -70,9 +94,9 @@ export const ServicesContent = () => {
 
                             <p className="text-base text-white/70 text-center">{service.desc}</p>
                         </div>
-                    </div>
+                    </motion.div>
                 ))}
-            </div>
+            </motion.div>
         </section>
     );
 };
