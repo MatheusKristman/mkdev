@@ -33,7 +33,7 @@ export const CTA = () => {
                     onClick={openContactModal}
                     className="w-full bg-[#0C3988] text-white text-lg font-bold rounded-xl px-6 py-4 flex items-center justify-center z-10 lg:w-fit"
                 >
-                    Solicitar orçamento
+                    Entre em contato 
                 </button>
             </div>
         </motion.div>

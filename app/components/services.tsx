@@ -52,13 +52,17 @@ export const Services = () => {
                     variants={titleAnimation}
                     className="text-white text-2xl font-bold text-left md:max-w-lg md:text-4xl lg:text-right"
                 >
-                    Escolha o{" "}
+                    O seu{" "}
                     <strong className="bg-gradient-to-r from-[#D285DE] to-[#7236DE] text-transparent bg-clip-text">
-                        modelo
-                    </strong>{" "}
-                    que mais combina com seu{" "}
+                        Site
+                    </strong>
+                    , a Nossa{" "}
                     <strong className="bg-gradient-to-r from-[#D285DE] to-[#7236DE] text-transparent bg-clip-text">
-                        negócio.
+                        Paixão:{" "}
+                    </strong>
+                    Conheça{" "}
+                    <strong className="bg-gradient-to-r from-[#D285DE] to-[#7236DE] text-transparent bg-clip-text">
+                        Nossos Serviços.
                     </strong>
                 </motion.h2>
             </motion.div>
@@ -102,8 +106,8 @@ export const Services = () => {
 
                             <AccordionContent>
                                 <p className="text-white text-base leading-[25px] ml-[60px] mb-6">
-                                    Landing Page é focada em conversão de leads e clientes. Crie a
-                                    sua e aumente suas vendas.
+                                    Transforme visitantes em clientes com páginas direcionadas,
+                                    destacando ofertas específicas para máxima conversão.
                                 </p>
 
                                 <Link
@@ -140,8 +144,8 @@ export const Services = () => {
 
                             <AccordionContent>
                                 <p className="text-white text-base leading-[25px] ml-[60px] mb-6">
-                                    Sites institucionais são direto ao ponto, mostre seu serviço e
-                                    atenda o cliente em poucos cliques.
+                                    Vitrine online que revela identidade, valores e serviços,
+                                    construindo confiança e relacionamentos duradouros.
                                 </p>
 
                                 <Link
@@ -176,8 +180,8 @@ export const Services = () => {
 
                             <AccordionContent>
                                 <p className="text-white text-base leading-[25px] ml-[60px] mb-6">
-                                    Lorem ipsum dolor sit amet, qui minim labore adipisicing minim
-                                    sint cillum sint consectetur cupidatat.
+                                    Solução robusta para interatividade avançada, comércio
+                                    eletrônico e experiências online dinâmicas e personalizadas.
                                 </p>
 
                                 <Link

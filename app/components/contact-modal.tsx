@@ -35,20 +35,20 @@ export const ContactModal = () => {
                             animate="animate"
                             exit="exit"
                             variants={boxAnimation}
-                            className="bg-[#222C3A]/30 backdrop-blur-xl inline-block w-full max-w-lg align-middle relative left-1/2 -translate-x-1/2 py-9 px-6 rounded-3xl shadow-lg lg:py-14 lg:px-9"
+                            className="bg-[#222C3A]/30 backdrop-blur-xl inline-block w-full max-w-lg align-middle relative left-1/2 -translate-x-1/2 p-6 rounded-3xl shadow-lg lg:p-9"
                         >
-                            <div className="w-full flex items-center justify-end mb-6">
+                            <div className="w-full flex items-center justify-between mb-6">
+                                <span className="w-3/4 flex gap-x-1 text-white/40 text-sm items-center">
+                                    Contato
+                                    <div className="w-full bg-gradient-to-r from-white/40 to-transparent h-[1px]" />
+                                </span>
+
                                 <button type="button" onClick={closeContactModal}>
                                     <X size={40} color="white" strokeWidth={1} />
                                 </button>
                             </div>
 
                             <div className="w-full">
-                                <span className="w-3/4 flex gap-x-1 text-white/40 text-sm items-center mb-6">
-                                    Contato
-                                    <div className="w-full bg-gradient-to-r from-white/40 to-transparent h-[1px]" />
-                                </span>
-
                                 <div className="w-full flex mb-12 gap-x-5 md:max-w-lg lg:max-w-2xl">
                                     <span className="bg-[#1161DA] rounded-full p-3 flex items-center justify-center h-fit w-fit shadow-[0px_6px_13px_#126CB1]">
                                         <Phone color="white" size={25} />
@@ -63,8 +63,8 @@ export const ContactModal = () => {
                                         </h2>
 
                                         <p className="text-base text-white/90 leading-[27px]">
-                                            Quer descobrir com nós podemos melhorar o seu negócio?
-                                            Mande sua mensagem.
+                                            Pronto para ter um site incrível ou melhorar o que já
+                                            tem? Mande mensagem e vamos começar!
                                         </p>
                                     </div>
                                 </div>

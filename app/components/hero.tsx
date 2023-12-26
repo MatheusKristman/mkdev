@@ -37,8 +37,9 @@ export const Hero = () => {
                     variants={infoAnimation}
                     className="text-center text-lg text-white/80 leading-8 mb-9 md:max-w-xl"
                 >
-                    Lorem ipsum dolor sit amet, officia excepteur ex fugiat reprehenderit enim
-                    labore culpa sint ad nisi Lorem pariatur mollit ex esse exercitation amet.
+                    Sua empresa merece um site que vá além do visual. Criamos soluções digitais
+                    personalizadas para impulsionar o crescimento do seu negócio, que conectam,
+                    convertem e elevam a sua marca a novos patamares.
                 </motion.p>
 
                 <motion.button
@@ -47,7 +48,7 @@ export const Hero = () => {
                     onClick={openContactModal}
                     className="bg-gradient-to-br from-[#229CF5] to-[#7236DE] py-4 px-6 text-white text-lg font-semibold rounded-xl md:text-2xl"
                 >
-                    Faça seu orçamento
+                    Comece agora
                 </motion.button>
             </motion.div>
 

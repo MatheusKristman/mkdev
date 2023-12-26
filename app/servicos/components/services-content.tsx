@@ -74,7 +74,7 @@ export const ServicesContent = () => {
                 initial="initial"
                 animate="animate"
                 variants={wrapperAnimation}
-                className="hidden lg:grid w-full grid-cols-3 grid-rows-3 gap-5"
+                className="hidden lg:grid w-full grid-cols-3 grid-rows-2 gap-5"
             >
                 {servicesData.map((service, index) => (
                     <motion.div

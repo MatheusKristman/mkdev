@@ -89,7 +89,7 @@ export const ContactForm = () => {
 
                                 <FormControl>
                                     <Input
-                                        placeholder="Digite seu e-mail"
+                                        placeholder="Digite seu melhor e-mail"
                                         className={inputStyle}
                                         {...field}
                                     />
@@ -155,7 +155,7 @@ export const ContactForm = () => {
                                 </FormLabel>
                                 <FormControl>
                                     <Textarea
-                                        placeholder="Digite a mensagem"
+                                        placeholder="O que podemos ajudar?"
                                         className={cn(inputStyle, "h-28 resize-none")}
                                         {...field}
                                     />

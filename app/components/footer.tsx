@@ -76,7 +76,7 @@ export const Footer = () => {
                                 <PopoverContent className="w-52 bg-[#10161F] border-[#10161F]">
                                     <div className="flex flex-col gap-y-4 items-center">
                                         <Link
-                                            href="/projetos/landing-page"
+                                            href="/projetos?category=landing-page"
                                             className={cn(
                                                 "text-white/70 font-medium text-base hover:text-white transition",
                                             )}
@@ -84,13 +84,13 @@ export const Footer = () => {
                                             Landing Page
                                         </Link>
                                         <Link
-                                            href="/projetos/site-institucional"
+                                            href="/projetos?category=site-institucional"
                                             className="text-white/70 font-medium text-base hover:text-white transition"
                                         >
                                             Site Institucional
                                         </Link>
                                         <Link
-                                            href="/projetos/plataforma"
+                                            href="/projetos?category=plataforma"
                                             className="text-white/70 font-medium text-base hover:text-white transition"
                                         >
                                             Plataforma

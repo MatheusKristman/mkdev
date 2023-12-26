@@ -112,13 +112,14 @@ export const HeaderMobileMenu = () => {
                                             <ul className="w-full flex flex-col">
                                                 <li className="w-full py-6 border-b border-b-white flex items-center justify-between group cursor-pointer">
                                                     <Link
-                                                        href="/projetos/landing-page"
+                                                        href="/projetos?category=landing-page"
                                                         className="text-white text-xl font-medium group-hover:underline"
                                                     >
                                                         Landing Page
                                                     </Link>
 
-                                                    {pathname === "/projetos/landing-page" && (
+                                                    {pathname ===
+                                                        "/projetos?category=landing-page" && (
                                                         <Dot
                                                             size={40}
                                                             color="#fff"
@@ -129,14 +130,14 @@ export const HeaderMobileMenu = () => {
 
                                                 <li className="w-full py-6 border-b border-b-white flex items-center justify-between group cursor-pointer">
                                                     <Link
-                                                        href="/projetos/site-institucional"
+                                                        href="/projetos?category=site-institucional"
                                                         className="text-white text-xl font-medium group-hover:underline"
                                                     >
                                                         Site Institucional
                                                     </Link>
 
                                                     {pathname ===
-                                                        "/projetos/site-institucional" && (
+                                                        "/projetos?category=site-institucional" && (
                                                         <Dot
                                                             size={40}
                                                             color="#fff"
@@ -147,13 +148,14 @@ export const HeaderMobileMenu = () => {
 
                                                 <li className="w-full py-6 flex items-center justify-between group cursor-pointer">
                                                     <Link
-                                                        href="/projetos/plataforma"
+                                                        href="/projetos?category=plataforma"
                                                         className="text-white text-xl font-medium group-hover:underline"
                                                     >
                                                         Plataforma
                                                     </Link>
 
-                                                    {pathname === "/projetos/plataforma" && (
+                                                    {pathname ===
+                                                        "/projetos?category=plataforma" && (
                                                         <Dot
                                                             size={40}
                                                             color="#fff"
