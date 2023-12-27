@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ContactForm } from "./contact-form";
 import useModalStore from "@/stores/useModalStore";
 import { overlayAnimation, boxAnimation } from "@/constants/framer/contact-modal-animation";
+import { cn } from "@/lib/utils";
 
 export const ContactModal = () => {
     const { isContactModalOpen, closeContactModal } = useModalStore();
@@ -28,7 +29,10 @@ export const ContactModal = () => {
                         animate="animate"
                         exit="exit"
                         variants={overlayAnimation}
-                        className="w-full h-full fixed top-0 bottom-0 left-0 right-0 bg-gray-primary/80 backdrop-blur z-50 py-12 px-6 overflow-y-auto md:px-12 before:content-[''] before:h-full before:inline-block before:align-middle"
+                        className={cn(
+                            "w-full h-full fixed top-0 bottom-0 left-0 right-0 bg-gray-primary/80 backdrop-blur z-50 py-12 px-6 overflow-y-auto md:px-12 before:content-[''] before:h-full before:inline-block before:align-middle",
+                            "scrollbar scrollbar-thumb-slate-700 scrollbar-thumb-rounded-lg scrollbar-w-2",
+                        )}
                     >
                         <motion.div
                             initial="initial"

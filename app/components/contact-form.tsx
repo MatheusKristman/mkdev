@@ -1,6 +1,7 @@
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { ChangeEvent } from "react";
 
 import { contactSchema } from "@/constants/schema/contact-schema";
 import { Button } from "@/components/ui/button";
@@ -15,7 +16,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
-import { ChangeEvent } from "react";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 export const ContactForm = () => {
     const form = useForm<z.infer<typeof contactSchema>>({
@@ -156,7 +157,11 @@ export const ContactForm = () => {
                                 <FormControl>
                                     <Textarea
                                         placeholder="O que podemos ajudar?"
-                                        className={cn(inputStyle, "h-28 resize-none")}
+                                        className={cn(
+                                            inputStyle,
+                                            "h-28 resize-none",
+                                            "scrollbar scrollbar-thumb-slate-700 scrollbar-thumb-rounded-lg scrollbar-w-2",
+                                        )}
                                         {...field}
                                     />
                                 </FormControl>

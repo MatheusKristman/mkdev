@@ -111,7 +111,7 @@ export const Services = () => {
                                 </p>
 
                                 <Link
-                                    href="/projetos/landing-page"
+                                    href="/projetos?category=landing-page"
                                     className="w-full bg-white flex items-center justify-center py-2 px-6 text-[#222C3A] text-lg font-bold rounded-lg"
                                 >
                                     Ver mais
@@ -149,7 +149,7 @@ export const Services = () => {
                                 </p>
 
                                 <Link
-                                    href="/projetos/site-institucional"
+                                    href="/projetos?category=site-institucional"
                                     className="w-full bg-white flex items-center justify-center py-2 px-6 text-[#222C3A] text-lg font-bold rounded-lg"
                                 >
                                     Ver mais
@@ -185,7 +185,7 @@ export const Services = () => {
                                 </p>
 
                                 <Link
-                                    href="/projetos/plataforma"
+                                    href="/projetos?category=plataforma"
                                     className="w-full bg-white flex items-center justify-center py-2 px-6 text-[#222C3A] text-lg font-bold rounded-lg"
                                 >
                                     Ver mais

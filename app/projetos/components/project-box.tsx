@@ -9,6 +9,7 @@ import { Switch } from "@/components/ui/switch";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { projectBoxAnimation } from "@/constants/framer/projects/projects-page-animation";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 interface ProjectBoxProps {
     desktopImage: string;
@@ -50,7 +51,7 @@ export const ProjectBox = ({
             variants={projectBoxAnimation}
             className="w-full rounded-2xl overflow-hidden bg-slate-700"
         >
-            <div className="w-full aspect-video overflow-y-auto">
+            <ScrollArea className="w-full aspect-video overflow-y-auto">
                 {isMobileActive ? (
                     <Image
                         src={mobileImage}
@@ -68,7 +69,7 @@ export const ProjectBox = ({
                         className="object-contain object-center"
                     />
                 )}
-            </div>
+            </ScrollArea>
 
             <div className="w-full px-6 py-9 flex flex-col items-center md:px-11">
                 <div className="w-full flex items-center justify-between gap-x-12 mb-6">

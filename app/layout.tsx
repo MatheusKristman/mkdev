@@ -15,7 +15,14 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
         <html lang="pt-BR">
-            <body className={cn(redHatDisplay.className, "bg-gray-primary")}>{children}</body>
+            <body
+                className={cn(
+                    redHatDisplay.className,
+                    "bg-gray-primary scrollbar scrollbar-thumb-slate-700 scrollbar-thumb-rounded-lg scrollbar-w-2",
+                )}
+            >
+                {children}
+            </body>
         </html>
     );
 }
