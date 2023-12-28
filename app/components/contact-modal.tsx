@@ -73,7 +73,7 @@ export const ContactModal = () => {
                                     </div>
                                 </div>
 
-                                <ContactForm />
+                                <ContactForm closeContactModal={closeContactModal} />
                             </div>
                         </motion.div>
                     </motion.div>

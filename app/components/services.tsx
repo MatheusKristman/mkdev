@@ -28,10 +28,6 @@ import "swiper/css/navigation";
 export const Services = () => {
     const [accordionValue, setAccordionValue] = useState<string>("item-1");
 
-    useEffect(() => {
-        console.log(accordionValue);
-    }, [accordionValue]);
-
     return (
         <section className="w-full px-6 mb-12 md:px-16 md:mb-24 lg:container lg:mx-auto lg:mb-36">
             <motion.div

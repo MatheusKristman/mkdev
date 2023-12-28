@@ -4,6 +4,7 @@ import { Red_Hat_Display } from "next/font/google";
 import { cn } from "@/lib/utils";
 
 import "./globals.css";
+import { Toaster } from "react-hot-toast";
 
 const redHatDisplay = Red_Hat_Display({ subsets: ["latin"] });
 
@@ -21,6 +22,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                     "bg-gray-primary scrollbar scrollbar-thumb-slate-700 scrollbar-thumb-rounded-lg scrollbar-w-2",
                 )}
             >
+                <Toaster position="top-center" />
                 {children}
             </body>
         </html>

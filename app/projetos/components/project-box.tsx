@@ -38,10 +38,6 @@ export const ProjectBox = ({
 }: ProjectBoxProps) => {
     const [isMobileActive, setIsMobileActive] = useState<boolean>(false);
 
-    useEffect(() => {
-        console.log(isMobileActive);
-    }, [isMobileActive]);
-
     function handleMobileView() {
         setIsMobileActive((prev) => !prev);
     }

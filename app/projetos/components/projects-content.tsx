@@ -31,7 +31,6 @@ export const ProjectsContent = () => {
     const category = searchParams.get("category");
 
     useEffect(() => {
-        console.log(category);
         if (category === "landing-page") {
             const filteredProjects = projectsData.filter(
                 (project) => project.category === "Landing Page",

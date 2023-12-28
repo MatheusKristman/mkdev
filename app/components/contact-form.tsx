@@ -2,6 +2,8 @@ import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { ChangeEvent } from "react";
+import axios from "axios";
+import { toast } from "react-hot-toast";
 
 import { contactSchema } from "@/constants/schema/contact-schema";
 import { Button } from "@/components/ui/button";
@@ -16,9 +18,8 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
-import { ScrollArea } from "@/components/ui/scroll-area";
 
-export const ContactForm = () => {
+export const ContactForm = ({ closeContactModal }: { closeContactModal: () => void }) => {
     const form = useForm<z.infer<typeof contactSchema>>({
         resolver: zodResolver(contactSchema),
         defaultValues: {
@@ -36,8 +37,6 @@ export const ContactForm = () => {
     function handleCel(event: ChangeEvent<HTMLInputElement>) {
         let cel = event.target.value.replace(/\D/g, "");
 
-        console.log(cel.length);
-
         if (cel.length <= 10) {
             cel = cel.replace(/(\d{2})(\d)/, "($1) $2");
         } else if (cel.length === 11) {
@@ -50,7 +49,16 @@ export const ContactForm = () => {
     }
 
     function onSubmit(values: z.infer<typeof contactSchema>) {
-        console.log(values);
+        axios
+            .post("/api/contact", values)
+            .then((res) => {
+                toast.success(res.data.message);
+
+                closeContactModal();
+            })
+            .catch((error) => {
+                toast.error(error.response.data);
+            });
     }
 
     return (
