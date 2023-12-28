@@ -63,6 +63,8 @@ export const ContactForm = ({
         axios
             .post("/api/contact", values)
             .then((res) => {
+                console.log(res.data);
+
                 toast.success(res.data.message);
 
                 closeContactModal();

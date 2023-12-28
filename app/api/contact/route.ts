@@ -49,6 +49,7 @@ export async function POST(request: Request) {
             transporter.sendMail(emailMessage, (error, info) => {
                 if (error) {
                     console.log(error);
+
                     reject(error);
                 } else {
                     resolve(info);
