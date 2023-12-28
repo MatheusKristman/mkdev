@@ -24,6 +24,8 @@ export async function POST(request: Request) {
                 console.log(error);
 
                 return new Response("Erro na conexão do email", { status: 401 });
+            } else {
+                console.log("Servidor do email rodando");
             }
         });
 
