@@ -1,7 +1,7 @@
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { ChangeEvent } from "react";
+import { ChangeEvent, Dispatch, SetStateAction } from "react";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 
@@ -19,7 +19,17 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
 
-export const ContactForm = ({ closeContactModal }: { closeContactModal: () => void }) => {
+interface ContactFormProps {
+    closeContactModal: () => void;
+    isSendingMessage: boolean;
+    setSendingMessage: Dispatch<SetStateAction<boolean>>;
+}
+
+export const ContactForm = ({
+    closeContactModal,
+    isSendingMessage,
+    setSendingMessage,
+}: ContactFormProps) => {
     const form = useForm<z.infer<typeof contactSchema>>({
         resolver: zodResolver(contactSchema),
         defaultValues: {
@@ -32,7 +42,7 @@ export const ContactForm = ({ closeContactModal }: { closeContactModal: () => vo
     });
 
     const inputStyle =
-        "w-full h-12 px-4 py-2 border-2 border-blue-600 bg-transparent text-white text-base focus-visible:ring-0 focus-visible:ring-offset-blue-600 transition";
+        "w-full h-12 px-4 py-2 border-2 border-blue-600 bg-transparent text-white text-base focus-visible:ring-0 focus-visible:ring-offset-blue-600 transition disabled:opacity-80 disabled:cursor-not-allowed";
 
     function handleCel(event: ChangeEvent<HTMLInputElement>) {
         let cel = event.target.value.replace(/\D/g, "");
@@ -49,6 +59,7 @@ export const ContactForm = ({ closeContactModal }: { closeContactModal: () => vo
     }
 
     function onSubmit(values: z.infer<typeof contactSchema>) {
+        setSendingMessage(true);
         axios
             .post("/api/contact", values)
             .then((res) => {
@@ -58,6 +69,9 @@ export const ContactForm = ({ closeContactModal }: { closeContactModal: () => vo
             })
             .catch((error) => {
                 toast.error(error.response.data);
+            })
+            .finally(() => {
+                setSendingMessage(false);
             });
     }
 
@@ -79,6 +93,7 @@ export const ContactForm = ({ closeContactModal }: { closeContactModal: () => vo
                                         placeholder="Digite seu nome"
                                         className={inputStyle}
                                         {...field}
+                                        disabled={isSendingMessage}
                                     />
                                 </FormControl>
 
@@ -101,6 +116,7 @@ export const ContactForm = ({ closeContactModal }: { closeContactModal: () => vo
                                         placeholder="Digite seu melhor e-mail"
                                         className={inputStyle}
                                         {...field}
+                                        disabled={isSendingMessage}
                                     />
                                 </FormControl>
 
@@ -124,6 +140,7 @@ export const ContactForm = ({ closeContactModal }: { closeContactModal: () => vo
                                         className={inputStyle}
                                         {...field}
                                         onChange={handleCel}
+                                        disabled={isSendingMessage}
                                     />
                                 </FormControl>
 
@@ -146,6 +163,7 @@ export const ContactForm = ({ closeContactModal }: { closeContactModal: () => vo
                                         placeholder="Digite o assunto"
                                         className={inputStyle}
                                         {...field}
+                                        disabled={isSendingMessage}
                                     />
                                 </FormControl>
 
@@ -171,6 +189,7 @@ export const ContactForm = ({ closeContactModal }: { closeContactModal: () => vo
                                             "scrollbar scrollbar-thumb-slate-700 scrollbar-thumb-rounded-lg scrollbar-w-2",
                                         )}
                                         {...field}
+                                        disabled={isSendingMessage}
                                     />
                                 </FormControl>
                                 <FormMessage />
@@ -181,9 +200,10 @@ export const ContactForm = ({ closeContactModal }: { closeContactModal: () => vo
 
                 <Button
                     type="submit"
-                    className="bg-blue-600 hover:bg-blue-800 text-white text-lg font-bold w-full flex items-center justify-center"
+                    disabled={isSendingMessage}
+                    className="bg-blue-600 hover:bg-blue-800 text-white text-lg font-bold w-full flex items-center justify-center disabled:cursor-not-allowed"
                 >
-                    Enviar
+                    {isSendingMessage ? "Enviando" : "Enviar"}
                 </Button>
             </form>
         </Form>

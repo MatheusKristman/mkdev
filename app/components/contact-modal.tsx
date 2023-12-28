@@ -10,6 +10,8 @@ import { overlayAnimation, boxAnimation } from "@/constants/framer/contact-modal
 import { cn } from "@/lib/utils";
 
 export const ContactModal = () => {
+    const [isSendingMessage, setSendingMessage] = useState<boolean>(false);
+
     const { isContactModalOpen, closeContactModal } = useModalStore();
 
     useEffect(() => {
@@ -47,7 +49,11 @@ export const ContactModal = () => {
                                     <div className="w-full bg-gradient-to-r from-white/40 to-transparent h-[1px]" />
                                 </span>
 
-                                <button type="button" onClick={closeContactModal}>
+                                <button
+                                    type="button"
+                                    disabled={isSendingMessage}
+                                    onClick={closeContactModal}
+                                >
                                     <X size={40} color="white" strokeWidth={1} />
                                 </button>
                             </div>
@@ -73,7 +79,11 @@ export const ContactModal = () => {
                                     </div>
                                 </div>
 
-                                <ContactForm closeContactModal={closeContactModal} />
+                                <ContactForm
+                                    closeContactModal={closeContactModal}
+                                    isSendingMessage={isSendingMessage}
+                                    setSendingMessage={setSendingMessage}
+                                />
                             </div>
                         </motion.div>
                     </motion.div>
