@@ -19,14 +19,17 @@ export async function POST(request: Request) {
             },
         });
 
-        transporter.verify((error) => {
-            if (error) {
-                console.log(error);
+        await new Promise((resolve, reject) => {
+            transporter.verify((error, success) => {
+                if (error) {
+                    console.log(error);
 
-                return new Response("Erro na conexão do email", { status: 401 });
-            } else {
-                console.log("Servidor do email rodando");
-            }
+                    reject(error);
+                } else {
+                    console.log("Servidor do email rodando");
+                    resolve(success);
+                }
+            });
         });
 
         const emailMessage = {
@@ -42,11 +45,15 @@ export async function POST(request: Request) {
 `,
         };
 
-        transporter.sendMail(emailMessage, (error) => {
-            if (error) {
-                console.log(error);
-                return;
-            }
+        await new Promise((resolve, reject) => {
+            transporter.sendMail(emailMessage, (error, info) => {
+                if (error) {
+                    console.log(error);
+                    reject(error);
+                } else {
+                    resolve(info);
+                }
+            });
         });
 
         return Response.json({ message: "Mensagem enviada com sucesso, aguarde nosso contato" });
