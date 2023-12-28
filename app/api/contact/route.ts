@@ -19,6 +19,14 @@ export async function POST(request: Request) {
             },
         });
 
+        transporter.verify((error) => {
+            if (error) {
+                console.log(error);
+
+                return new Response("Erro na conexão do email", { status: 401 });
+            }
+        });
+
         const emailMessage = {
             from: process.env.CONTACT_EMAIL,
             to: process.env.CONTACT_EMAIL,
