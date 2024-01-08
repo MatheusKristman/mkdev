@@ -3,11 +3,14 @@
 import { Phone, X } from "lucide-react";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
+import { BsWhatsapp } from "react-icons/bs";
 
 import { ContactForm } from "./contact-form";
 import useModalStore from "@/stores/useModalStore";
 import { overlayAnimation, boxAnimation } from "@/constants/framer/contact-modal-animation";
 import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 
 export const ContactModal = () => {
     const [isSendingMessage, setSendingMessage] = useState<boolean>(false);
@@ -84,6 +87,28 @@ export const ContactModal = () => {
                                     isSendingMessage={isSendingMessage}
                                     setSendingMessage={setSendingMessage}
                                 />
+
+                                <div className="w-full mt-6 space-y-4">
+                                    <div className="w-full flex items-center justify-between gap-x-2">
+                                        <div className="w-1/2 h-[1px] bg-white/80" />
+                                        <span className="text-lg font-normal text-white">OU</span>
+                                        <div className="w-1/2 h-[1px] bg-white/80" />
+                                    </div>
+
+                                    <Button
+                                        asChild
+                                        className="w-full bg-transparent border-2 border-[#25D366] text-lg text-[#25D366] flex items-center gap-x-2 hover:bg-[#25D366] hover:text-white"
+                                    >
+                                        <a
+                                            href="https://w.app/MKDev"
+                                            target="_blank"
+                                            rel="noreferrer noopener"
+                                        >
+                                            <BsWhatsapp />
+                                            WhatsApp
+                                        </a>
+                                    </Button>
+                                </div>
                             </div>
                         </motion.div>
                     </motion.div>
