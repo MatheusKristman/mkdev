@@ -86,7 +86,7 @@ export const ProjectBox = ({
 
                 <p className="text-white text-base leading-[30px] mb-9">{desc}</p>
 
-                <div className="w-full flex flex-col items-center gap-y-6 md:flex-row md:justify-between">
+                <div className="w-full mt-auto flex flex-col items-center gap-y-6 md:flex-row md:justify-between">
                     <a
                         href={link}
                         target="_blank"

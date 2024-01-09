@@ -88,7 +88,7 @@ export const ContactModal = () => {
                                     setSendingMessage={setSendingMessage}
                                 />
 
-                                <div className="w-full mt-6 space-y-4">
+                                <div className="w-full mt-6 space-y-6">
                                     <div className="w-full flex items-center justify-between gap-x-2">
                                         <div className="w-1/2 h-[1px] bg-white/80" />
                                         <span className="text-lg font-normal text-white">OU</span>

@@ -208,36 +208,21 @@ export const Services = () => {
                         className="rounded-tl-3xl rounded-tr-lg rounded-br-3xl rounded-bl-lg overflow-hidden select-none md:rounded-tl-[60px] md:rounded-br-[60px]"
                     >
                         <SwiperSlide className="relative w-full aspect-square">
-                            <Link href="/projetos/landing-page">
-                                <Image
-                                    src="/images/services-print-placeholder.png"
-                                    alt="Projeto"
-                                    fill
-                                    className="object-contain"
-                                />
-                            </Link>
+                            <Image
+                                src="/images/landing-page-desktop-1.png"
+                                alt="Projeto"
+                                fill
+                                className="object-cover object-top"
+                            />
                         </SwiperSlide>
 
                         <SwiperSlide className="relative w-full aspect-square">
-                            <Link href="/projetos/site-institucional">
-                                <Image
-                                    src="/images/services-print-placeholder.png"
-                                    alt="Projeto"
-                                    fill
-                                    className="object-contain"
-                                />
-                            </Link>
-                        </SwiperSlide>
-
-                        <SwiperSlide className="relative w-full aspect-square">
-                            <Link href="/projetos/plataforma">
-                                <Image
-                                    src="/images/services-print-placeholder.png"
-                                    alt="Projeto"
-                                    fill
-                                    className="object-contain"
-                                />
-                            </Link>
+                            <Image
+                                src="/images/platform-desktop-1.png"
+                                alt="Projeto"
+                                fill
+                                className="object-cover object-top"
+                            />
                         </SwiperSlide>
                     </Swiper>
                 </motion.div>

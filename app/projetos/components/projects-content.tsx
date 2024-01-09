@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 
@@ -26,7 +26,6 @@ type projectType = {
 export const ProjectsContent = () => {
     const [projects, setProjects] = useState<projectType[]>([]);
 
-    const pathname = usePathname();
     const searchParams = useSearchParams();
     const category = searchParams.get("category");
 
@@ -121,23 +120,32 @@ export const ProjectsContent = () => {
                     initial="initial"
                     animate="animate"
                     variants={projectsWrapperAnimation}
-                    className="w-full grid grid-cols-1 lg:grid-cols-2 lg:grid-rows-2 gap-12"
+                    className="w-full grid grid-cols-1 lg:grid-cols-2 gap-12"
                 >
-                    {projects.map((project, index) => (
-                        <ProjectBox
-                            key={`${project.title}-${index}`}
-                            desktopImage={project.desktopUrl}
-                            desktopWidth={project.desktopWidth}
-                            desktopHeight={project.desktopHeight}
-                            mobileImage={project.mobileUrl}
-                            mobileWidth={project.mobileWidth}
-                            mobileHeight={project.mobileHeight}
-                            category={project.category}
-                            link={project.link}
-                            title={project.title}
-                            desc={project.description}
-                        />
-                    ))}
+                    {projects.length !== 0 ? (
+                        projects.map((project, index) => (
+                            <ProjectBox
+                                key={`${project.title}-${index}`}
+                                desktopImage={project.desktopUrl}
+                                desktopWidth={project.desktopWidth}
+                                desktopHeight={project.desktopHeight}
+                                mobileImage={project.mobileUrl}
+                                mobileWidth={project.mobileWidth}
+                                mobileHeight={project.mobileHeight}
+                                category={project.category}
+                                link={project.link}
+                                title={project.title}
+                                desc={project.description}
+                            />
+                        ))
+                    ) : (
+                        <div className="w-full h-36 flex items-center justify-center col-span-2">
+                            <span className="text-white/60 text-xl text-center font-semibold max-w-xl lg:text-2xl">
+                                Estamos trabalhando em novos projetos para esta categoria. Fique
+                                ligado para futuras atualizações!
+                            </span>
+                        </div>
+                    )}
                 </motion.div>
             </div>
         </section>
