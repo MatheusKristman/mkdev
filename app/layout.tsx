@@ -5,26 +5,35 @@ import { cn } from "@/lib/utils";
 
 import "./globals.css";
 import { Toaster } from "react-hot-toast";
+import { Suspense } from "react";
+import { FacebookPixelEvents } from "./components/facebook-pixel-event";
 
 const redHatDisplay = Red_Hat_Display({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-    title: "MKDev",
-    description: "Agencia de desenvolvimento",
+  title: "MKDev",
+  description: "Agencia de desenvolvimento",
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
-    return (
-        <html lang="pt-BR">
-            <body
-                className={cn(
-                    redHatDisplay.className,
-                    "bg-gray-primary scrollbar scrollbar-thumb-slate-700 scrollbar-thumb-rounded-lg scrollbar-w-2",
-                )}
-            >
-                <Toaster position="top-center" />
-                {children}
-            </body>
-        </html>
-    );
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html lang="pt-BR">
+      <body
+        className={cn(
+          redHatDisplay.className,
+          "bg-gray-primary scrollbar scrollbar-thumb-slate-700 scrollbar-thumb-rounded-lg scrollbar-w-2"
+        )}
+      >
+        <Toaster position="top-center" />
+        <Suspense fallback={null}>
+          <FacebookPixelEvents />
+        </Suspense>
+        {children}
+      </body>
+    </html>
+  );
 }
