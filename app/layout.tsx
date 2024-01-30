@@ -13,6 +13,12 @@ const redHatDisplay = Red_Hat_Display({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "MKDev",
   description: "Agencia de desenvolvimento",
+  verification: {
+    other: {
+      "facebook-domain-verification":
+        process.env.FACEBOOK_DOMAIN_VERIFICATION_ID!,
+    },
+  },
 };
 
 export default function RootLayout({
