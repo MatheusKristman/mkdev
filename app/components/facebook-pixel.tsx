@@ -15,6 +15,7 @@ export const FacebookPixel = () => {
     contactName,
     setContactName,
   } = usePixelStore();
+
   const [loaded, setLoaded] = useState(false);
   const pathname = usePathname();
   const searchParams = useSearchParams();
