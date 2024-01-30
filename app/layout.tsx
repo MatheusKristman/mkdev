@@ -22,6 +22,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-BR">
+      <FacebookPixelEvents />
       <body
         className={cn(
           redHatDisplay.className,
@@ -29,9 +30,6 @@ export default function RootLayout({
         )}
       >
         <Toaster position="top-center" />
-        <Suspense fallback={null}>
-          <FacebookPixelEvents />
-        </Suspense>
         {children}
       </body>
     </html>
