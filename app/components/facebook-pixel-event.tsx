@@ -11,10 +11,7 @@ export const FacebookPixelEvents = () => {
     import("react-facebook-pixel")
       .then((x) => x.default)
       .then((ReactPixel) => {
-        ReactPixel.init(process.env.FACEBOOK_PIXEL_ID!, undefined, {
-          autoConfig: true,
-          debug: true,
-        });
+        ReactPixel.init(process.env.FACEBOOK_PIXEL_ID!);
         ReactPixel.pageView();
       });
   }, [pathname, searchParams]);
