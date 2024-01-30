@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 import "./globals.css";
 import { Toaster } from "react-hot-toast";
 import { Suspense } from "react";
-import { FacebookPixelEvents } from "./components/facebook-pixel-event";
+import { FacebookPixel } from "./components/facebook-pixel";
 
 const redHatDisplay = Red_Hat_Display({ subsets: ["latin"] });
 
@@ -22,7 +22,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-BR">
-      <FacebookPixelEvents />
       <body
         className={cn(
           redHatDisplay.className,
@@ -31,6 +30,7 @@ export default function RootLayout({
       >
         <Toaster position="top-center" />
         {children}
+        <FacebookPixel />
       </body>
     </html>
   );
