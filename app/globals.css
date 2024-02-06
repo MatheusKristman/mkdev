@@ -117,3 +117,9 @@ html {
         @apply before:content-[''] before:w-0 before:h-[2px] before:bg-white before:absolute before:-bottom-1 before:right-0 after:content-[''] after:w-0 after:h-[2px] after:bg-white after:absolute after:-bottom-3 after:right-0 group-hover:after:w-1/2 group-hover:before:w-full;
     }
 }
+
+@layer components {
+    .text-gradient-blue-to-green {
+        @apply text-transparent bg-clip-text bg-gradient-to-r from-[#6769EB] to-[#3BD775] text-lg font-semibold;
+    }
+}
