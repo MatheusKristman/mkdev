@@ -36,6 +36,9 @@ module.exports = {
         "ad-desktop-top": "url('/images/ad-desktop-top.png')",
         "ad-tablet-top": "url('/images/ad-tablet-top.png')",
         "ad-mobile-top": "url('/images/ad-mobile-top.png')",
+        "ad-desktop-bottom": "url('/images/ad-desktop-bottom.png')",
+        "ad-tablet-bottom": "url('/images/ad-tablet-bottom.png')",
+        "ad-mobile-bottom": "url('/images/ad-mobile-bottom.png')",
       },
       colors: {
         "gray-primary": "#0C1017",

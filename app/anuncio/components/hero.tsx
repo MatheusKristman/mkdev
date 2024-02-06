@@ -4,15 +4,15 @@ import { Button } from "@/components/ui/button";
 
 export const Hero = () => {
   return (
-    <section className="w-full px-6 mt-12 flex flex-col sm:mt-16 sm:px-16 lg:mx-auto lg:container lg:mt-0 lg:gap-y-24 lg:h-[calc(90vh-70px)] lg:justify-center">
+    <section className="w-full px-6 mt-12 flex flex-col sm:mt-16 sm:px-16 lg:mx-auto lg:container lg:mt-0 lg:gap-y-24 lg:h-[calc(100vh-70px)] lg:justify-center">
       <div className="w-full flex flex-col items-center gap-y-12 lg:flex-row lg:justify-between lg:items-start lg:gap-x-24">
         <div className="w-full flex flex-col items-center gap-4 lg:items-start">
           <h1 className="text-4xl text-center text-white font-bold sm:text-5xl sm:max-w-sm lg:text-7xl lg:max-w-xl lg:text-left">
-            <strong className="text-gradient-blue-to-green text-4xl font-bold sm:text-5xl lg:text-7xl">
+            <strong className="text-gradient-purple-to-green text-4xl font-bold sm:text-5xl lg:text-7xl">
               Conquiste
             </strong>{" "}
             a Web com a{" "}
-            <strong className="text-gradient-blue-to-green text-4xl font-bold sm:text-5xl lg:text-7xl">
+            <strong className="text-gradient-purple-to-green text-4xl font-bold sm:text-5xl lg:text-7xl">
               Sua Marca
             </strong>
           </h1>
