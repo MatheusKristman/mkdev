@@ -42,7 +42,7 @@ export const FooterCTA = () => {
             className="w-full bg-[#0C3988] text-white text-lg font-bold rounded-xl hover:bg-[#0A2D68] flex items-center gap-x-2 sm:w-fit"
           >
             <a
-              href="https://w.app/MKDev"
+              href="https://api.whatsapp.com/send?phone=5511910955882&text=Ol%C3%A1,%20quero%20que%20a%20Ag%C3%AAncia%20MK%20Dev%20me%20ajude%20a%20tirar%20meu%20projeto%20do%20papel%20:)"
               target="_blank"
               rel="noreferrer noopener"
             >

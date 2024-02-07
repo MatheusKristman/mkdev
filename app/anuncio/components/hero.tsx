@@ -69,7 +69,7 @@ export const Hero = () => {
                 className="w-full bg-[#30D265] text-white text-base font-bold rounded-lg flex items-center gap-x-2 hover:bg-[#30D265]/80"
               >
                 <a
-                  href="https://w.app/MKDev"
+                  href="https://api.whatsapp.com/send?phone=5511910955882&text=Ol%C3%A1,%20quero%20que%20a%20Ag%C3%AAncia%20MK%20Dev%20me%20ajude%20a%20tirar%20meu%20projeto%20do%20papel%20:)"
                   target="_blank"
                   rel="noreferrer noopener"
                 >
