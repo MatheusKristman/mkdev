@@ -20,7 +20,7 @@ export const AdHeader = () => {
           rel="noreferrer noopener"
         >
           <Image
-            src="/images/logo.png"
+            src="/images/logo.svg"
             alt="MKDev"
             fill
             className="object-contain object-center"

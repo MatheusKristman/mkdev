@@ -126,4 +126,8 @@ html {
   .text-gradient-blue-to-green {
     @apply text-transparent bg-clip-text bg-gradient-to-r from-[#1FA8ED] to-[#3CD874] text-lg font-semibold;
   }
+
+  .text-gradient-light-blue-to-dark-blue {
+    @apply text-transparent bg-clip-text bg-gradient-to-r from-[#19D0F0] to-[#1161DA] text-lg font-semibold;
+  }
 }

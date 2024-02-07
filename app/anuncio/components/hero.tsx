@@ -44,9 +44,9 @@ export const Hero = () => {
             variants={textAnimation}
             className="text-xl font-medium text-white/80 text-center leading-8 sm:text-2xl sm:leading-[35px] lg:text-left lg:text-2xl lg:leading-[40px] lg:max-w-2xl"
           >
-            Destaque-se com designs envolventes e funcionalidades intuitivas. Da
-            landing page ao e-commerce, criamos experiências digitais memoráveis
-            para impulsionar o seu negócio.
+            Agência especializada em criação de sites personalizados, focados em
+            alta performance, usabilidade e conversão. Deixe-nos contar a
+            história digital da sua marca!
           </motion.p>
         </motion.div>
 
@@ -66,7 +66,7 @@ export const Hero = () => {
               <Button
                 asChild
                 size="lg"
-                className="w-full bg-[#30D265] text-white text-base font-bold rounded-lg flex items-center gap-x-2 hover:bg-[#30D265]/80"
+                className="w-full bg-[#30D265] text-white text-lg font-bold rounded-lg flex items-center gap-x-2 hover:bg-[#30D265]/80"
               >
                 <a
                   href="https://api.whatsapp.com/send?phone=5511910955882&text=Ol%C3%A1,%20quero%20que%20a%20Ag%C3%AAncia%20MK%20Dev%20me%20ajude%20a%20tirar%20meu%20projeto%20do%20papel%20:)"
@@ -98,7 +98,7 @@ export const Hero = () => {
               <Button
                 asChild
                 size="lg"
-                className="w-full bg-[#1FA8ED] text-white text-base font-bold rounded-lg flex items-center gap-x-2 hover:bg-[#1FA8ED]/80"
+                className="w-full bg-transparent border-2 border-[#007AFF] text-[#007AFF] text-lg font-medium rounded-lg flex items-center gap-x-2 hover:bg-[#007AFF] hover:text-white"
               >
                 <a
                   href="https://www.mkdevsolutions.com/"

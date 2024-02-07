@@ -25,7 +25,7 @@ export const About = () => {
             className="text-3xl text-white font-bold text-center sm:text-4xl lg:text-5xl lg:text-left"
           >
             Nossos{" "}
-            <strong className="text-gradient-blue-to-green text-3xl font-bold sm:text-4xl lg:text-5xl">
+            <strong className="text-gradient-light-blue-to-dark-blue text-3xl font-bold sm:text-4xl lg:text-5xl">
               Diferenciais
             </strong>
           </motion.h2>

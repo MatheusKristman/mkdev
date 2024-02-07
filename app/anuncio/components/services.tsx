@@ -23,10 +23,10 @@ export const Services = () => {
             variants={titleAnimation}
             className="text-3xl text-white font-bold sm:text-4xl lg:text-5xl"
           >
+            Nossos{" "}
             <strong className="text-gradient-blue-to-green text-3xl font-bold sm:text-4xl lg:text-5xl">
-              Nossos
-            </strong>{" "}
-            Trabalhos
+              Trabalhos
+            </strong>
           </motion.h2>
         </div>
 
