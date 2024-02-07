@@ -53,7 +53,7 @@ export const About = () => {
           </div>
 
           <div className="w-full flex flex-col">
-            <div className="w-full flex flex-col sm:flex-row sm:justify-between sm:mx-auto sm:max-w-md sm:mb-10">
+            <div className="w-full flex flex-col sm:flex-row sm:justify-between sm:mx-auto sm:max-w-md sm:mb-14">
               <MouseParallaxChild
                 factorX={0.5}
                 factorY={0.2}

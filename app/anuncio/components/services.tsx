@@ -33,19 +33,19 @@ export const Services = () => {
         <div className="w-full flex flex-col items-center gap-y-9 lg:grid lg:grid-cols-3 lg:grid-rows-1 lg:gap-x-9 lg:items-start">
           {/* TODO alterar imagens correspondentes para sua categoria */}
           <ServicesCard
-            imageUrl="/images/landing-page-desktop-1.png"
+            imageUrl="/images/landing-page-anuncio.png"
             categoryTitle="Landing Page"
             categoryDesc="Converta visitantes em clientes através de páginas estratégicas, ressaltando ofertas específicas para otimizar as taxas de conversão ao máximo."
           />
 
           <ServicesCard
-            imageUrl="/images/landing-page-desktop-1.png"
+            imageUrl="/images/site-institucional-anuncio.png"
             categoryTitle="Site Institucional"
             categoryDesc="Presença digital que expõe identidade, princípios e serviços, estabelecendo confiança e conexões duradouras."
           />
 
           <ServicesCard
-            imageUrl="/images/landing-page-desktop-1.png"
+            imageUrl="/images/plataforma-anuncio.png"
             categoryTitle="Plataforma"
             categoryDesc="Solução poderosa para interatividade avançada, comércio eletrônico e experiências online dinâmicas e personalizadas."
           />

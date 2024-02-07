@@ -64,17 +64,24 @@ export const Hero = () => {
 
             <motion.div variants={cardAnimation}>
               <Button
+                asChild
                 size="lg"
                 className="w-full bg-[#30D265] text-white text-base font-bold rounded-lg flex items-center gap-x-2 hover:bg-[#30D265]/80"
               >
-                <Image
-                  src="/images/whatsapp-white-icon.svg"
-                  alt="Whatsapp"
-                  width={27}
-                  height={27}
-                  className="object-contain object-center"
-                />
-                WhatsApp
+                <a
+                  href="https://w.app/MKDev"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                >
+                  <Image
+                    src="/images/whatsapp-white-icon.svg"
+                    alt="Whatsapp"
+                    width={27}
+                    height={27}
+                    className="object-contain object-center"
+                  />
+                  WhatsApp
+                </a>
               </Button>
             </motion.div>
           </div>
@@ -89,10 +96,17 @@ export const Hero = () => {
 
             <motion.div variants={cardAnimation}>
               <Button
+                asChild
                 size="lg"
                 className="w-full bg-[#1FA8ED] text-white text-base font-bold rounded-lg flex items-center gap-x-2 hover:bg-[#1FA8ED]/80"
               >
-                Visite o site
+                <a
+                  href="https://www.mkdevsolutions.com/"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                >
+                  Visite nosso site
+                </a>
               </Button>
             </motion.div>
           </div>

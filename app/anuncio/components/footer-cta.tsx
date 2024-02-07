@@ -37,17 +37,24 @@ export const FooterCTA = () => {
 
         <motion.div variants={itemsAnimation} className="w-full sm:w-fit">
           <Button
+            asChild
             size="lg"
             className="w-full bg-[#0C3988] text-white text-lg font-bold rounded-xl hover:bg-[#0A2D68] flex items-center gap-x-2 sm:w-fit"
           >
-            <Image
-              src="/images/whatsapp-white-icon.svg"
-              alt="Whatsapp"
-              width={27}
-              height={27}
-              className="object-contain object-center"
-            />
-            Solicitar orçamento
+            <a
+              href="https://w.app/MKDev"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              <Image
+                src="/images/whatsapp-white-icon.svg"
+                alt="Whatsapp"
+                width={27}
+                height={27}
+                className="object-contain object-center"
+              />
+              Solicitar orçamento
+            </a>
           </Button>
         </motion.div>
       </motion.div>
