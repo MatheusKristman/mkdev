@@ -1,12 +1,13 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { AnimationControls, motion, useAnimation } from "framer-motion";
 
 import { AboutCard } from "./about-card";
 import {
   containerAnimation,
   textAnimation,
 } from "@/constants/framer/ad/about-animation";
+import { MouseParallaxChild } from "react-parallax-mouse";
 
 export const About = () => {
   return (
@@ -53,24 +54,42 @@ export const About = () => {
 
           <div className="w-full flex flex-col">
             <div className="w-full flex flex-col sm:flex-row sm:justify-between sm:mx-auto sm:max-w-md sm:mb-10">
-              <AboutCard
-                className="w-fit p-5 rounded-2xl bg-gradient-to-br from-[#7236DE] to-[#1161DA] flex flex-col items-center self-start shadow-lg mb-4 sm:mb-0"
-                icon="bg-about-card-pen"
-                title="Layout Personalizado"
-              />
+              <MouseParallaxChild
+                factorX={0.5}
+                factorY={0.2}
+                className="flex flex-col"
+              >
+                <AboutCard
+                  className="w-fit p-5 rounded-2xl bg-gradient-to-br from-[#7236DE] to-[#1161DA] flex flex-col items-center self-start shadow-lg mb-4 sm:mb-0"
+                  icon="bg-about-card-pen"
+                  title="Layout Personalizado"
+                />
+              </MouseParallaxChild>
 
-              <AboutCard
-                className="w-fit p-5 rounded-2xl bg-gradient-to-br from-[#1161DA] to-[#20AA80] flex flex-col items-center self-end shadow-lg mb-4 sm:mb-0"
-                icon="bg-about-card-search"
-                title="Pronto para o Google"
-              />
+              <MouseParallaxChild
+                factorX={0.4}
+                factorY={0.1}
+                className="flex flex-col"
+              >
+                <AboutCard
+                  className="w-fit p-5 rounded-2xl bg-gradient-to-br from-[#1161DA] to-[#20AA80] flex flex-col items-center self-end shadow-lg mb-4 sm:mb-0"
+                  icon="bg-about-card-search"
+                  title="Pronto para o Google"
+                />
+              </MouseParallaxChild>
             </div>
 
-            <AboutCard
-              className="w-fit p-5 rounded-2xl bg-gradient-to-br from-[#20AA80] to-[#7236DE] flex flex-col items-center self-start shadow-lg ml-10 sm:self-center sm:ml-28"
-              icon="bg-about-card-gear"
-              title="Suporte contínuo"
-            />
+            <MouseParallaxChild
+              factorX={0.8}
+              factorY={0.5}
+              className="flex flex-col"
+            >
+              <AboutCard
+                className="w-fit p-5 rounded-2xl bg-gradient-to-br from-[#20AA80] to-[#7236DE] flex flex-col items-center self-start shadow-lg ml-10 sm:self-center sm:ml-40"
+                icon="bg-about-card-gear"
+                title="Suporte contínuo"
+              />
+            </MouseParallaxChild>
           </div>
         </div>
       </motion.div>

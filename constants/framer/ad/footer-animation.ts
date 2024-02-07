@@ -13,7 +13,7 @@ export const containerAnimation = {
 export const itemsAnimation = {
   initial: {
     opacity: 0,
-    y: 50,
+    y: 25,
   },
   animate: {
     opacity: 1,
