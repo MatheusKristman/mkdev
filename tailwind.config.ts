@@ -39,6 +39,9 @@ module.exports = {
         "ad-desktop-bottom": "url('/images/ad-desktop-bottom.png')",
         "ad-tablet-bottom": "url('/images/ad-tablet-bottom.png')",
         "ad-mobile-bottom": "url('/images/ad-mobile-bottom.png')",
+        "about-card-pen": "url('/images/about-card-pen.svg')",
+        "about-card-search": "url('/images/about-card-search.svg')",
+        "about-card-gear": "url('/images/about-card-gear.svg')",
       },
       colors: {
         "gray-primary": "#0C1017",

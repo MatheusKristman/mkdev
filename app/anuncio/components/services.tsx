@@ -1,16 +1,33 @@
+"use client";
+
 import { ServicesCard } from "./services-card";
+import { motion } from "framer-motion";
+
+import {
+  containerAnimation,
+  titleAnimation,
+} from "@/constants/framer/ad/services-animation";
 
 export const Services = () => {
   return (
-    <section className="w-full px-6 mt-12 sm:px-16 lg:mx-auto lg:container">
+    <motion.section
+      initial="initial"
+      whileInView="animate"
+      viewport={{ once: true, amount: 0.2 }}
+      variants={containerAnimation}
+      className="w-full px-6 mt-12 sm:px-16 lg:mx-auto lg:container"
+    >
       <div className="w-full flex flex-col gap-y-6">
         <div className="w-full flex items-center justify-center">
-          <h2 className="text-3xl text-white font-bold sm:text-4xl lg:text-5xl">
+          <motion.h2
+            variants={titleAnimation}
+            className="text-3xl text-white font-bold sm:text-4xl lg:text-5xl"
+          >
             <strong className="text-gradient-blue-to-green text-3xl font-bold sm:text-4xl lg:text-5xl">
               Nossos
             </strong>{" "}
             Trabalhos
-          </h2>
+          </motion.h2>
         </div>
 
         <div className="w-full flex flex-col items-center gap-y-9 lg:grid lg:grid-cols-3 lg:grid-rows-1 lg:gap-x-9 lg:items-start">
@@ -34,6 +51,6 @@ export const Services = () => {
           />
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 };

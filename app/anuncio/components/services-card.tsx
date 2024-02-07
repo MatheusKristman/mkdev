@@ -1,4 +1,9 @@
+"use client";
+
 import Image from "next/image";
+import { motion } from "framer-motion";
+
+import { cardAnimation } from "@/constants/framer/ad/services-animation";
 
 interface ServicesCardProps {
   imageUrl: string;
@@ -12,7 +17,10 @@ export const ServicesCard = ({
   categoryDesc,
 }: ServicesCardProps) => {
   return (
-    <div className="w-full h-full max-w-sm rounded-2xl overflow-hidden border-2 border-[#232D3A] flex flex-col lg:max-w-none">
+    <motion.div
+      variants={cardAnimation}
+      className="w-full h-full max-w-sm rounded-2xl overflow-hidden border-2 border-[#232D3A] flex flex-col lg:max-w-none"
+    >
       <div className="relative w-full aspect-video">
         <Image
           src={imageUrl}
@@ -31,6 +39,6 @@ export const ServicesCard = ({
           {categoryDesc}
         </p>
       </div>
-    </div>
+    </motion.div>
   );
 };

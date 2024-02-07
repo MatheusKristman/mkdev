@@ -1,16 +1,32 @@
+"use client";
+
 import Image from "next/image";
+import { motion } from "framer-motion";
+
+import { headerAnimation } from "@/constants/framer/ad/header-animation";
 
 export const AdHeader = () => {
   return (
-    <header className="w-full py-3 flex items-center justify-center border-b border-blue-600">
+    <motion.header
+      initial="initial"
+      animate="animate"
+      variants={headerAnimation}
+      className="w-full py-3 flex items-center justify-center border-b border-blue-600"
+    >
       <div className="relative w-[74px] h-[31px] sm:w-[84px] sm:h-[35px] lg:w-[110px] lg:h-[45px]">
-        <Image
-          src="/images/logo.png"
-          alt="MKDev"
-          fill
-          className="object-contain object-center"
-        />
+        <a
+          href="https://www.mkdevsolutions.com/"
+          target="_blank"
+          rel="noreferrer noopener"
+        >
+          <Image
+            src="/images/logo.png"
+            alt="MKDev"
+            fill
+            className="object-contain object-center"
+          />
+        </a>
       </div>
-    </header>
+    </motion.header>
   );
 };
