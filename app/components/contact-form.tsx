@@ -44,7 +44,7 @@ export const ContactForm = ({
   });
 
   const inputStyle =
-    "w-full h-12 px-4 py-2 border-2 border-blue-600 bg-transparent text-white text-base focus-visible:ring-0 focus-visible:ring-offset-blue-600 transition disabled:opacity-80 disabled:cursor-not-allowed";
+    "w-full h-12 px-4 py-2 border-2 border-blue-600 bg-transparent text-light-primary text-base focus-visible:ring-0 focus-visible:ring-offset-blue-600 transition disabled:opacity-80 disabled:cursor-not-allowed";
 
   function handleCel(event: ChangeEvent<HTMLInputElement>) {
     let cel = event.target.value.replace(/\D/g, "");
@@ -95,7 +95,7 @@ export const ContactForm = ({
             name="name"
             render={({ field }) => (
               <FormItem className="w-full flex flex-col gap-y-1">
-                <FormLabel className="text-white text-lg font-medium">
+                <FormLabel className="text-light-primary text-lg font-medium">
                   Nome
                 </FormLabel>
 
@@ -118,7 +118,7 @@ export const ContactForm = ({
             name="email"
             render={({ field }) => (
               <FormItem className="w-full flex flex-col gap-y-1">
-                <FormLabel className="text-white text-lg font-medium">
+                <FormLabel className="text-light-primary text-lg font-medium">
                   E-mail
                 </FormLabel>
 
@@ -141,7 +141,7 @@ export const ContactForm = ({
             name="cel"
             render={({ field }) => (
               <FormItem className="w-full flex flex-col gap-y-1">
-                <FormLabel className="text-white text-lg font-medium">
+                <FormLabel className="text-light-primary text-lg font-medium">
                   Celular
                 </FormLabel>
 
@@ -165,7 +165,7 @@ export const ContactForm = ({
             name="subject"
             render={({ field }) => (
               <FormItem className="w-full flex flex-col gap-y-1">
-                <FormLabel className="text-white text-lg font-medium">
+                <FormLabel className="text-light-primary text-lg font-medium">
                   Assunto
                 </FormLabel>
 
@@ -188,7 +188,7 @@ export const ContactForm = ({
             name="message"
             render={({ field }) => (
               <FormItem className="w-full flex flex-col gap-y-1">
-                <FormLabel className="text-white text-lg font-medium">
+                <FormLabel className="text-light-primary text-lg font-medium">
                   Mensagem
                 </FormLabel>
                 <FormControl>

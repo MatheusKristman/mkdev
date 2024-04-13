@@ -17,9 +17,19 @@ module.exports = {
     },
     extend: {
       backgroundImage: {
-        "home-desktop": "url('/images/home-bg-desktop.png')",
-        "home-tablet": "url('/images/home-bg-tablet.png')",
-        "home-mobile": "url('/images/home-bg-mobile.png')",
+        "hero-mobile": "url('/images/hero-mobile.png')",
+        "hero-tablet": "url('/images/hero-tablet.png')",
+        "hero-desktop": "url('/images/hero-desktop.png')",
+        "projects-section-mobile": "url('/images/projects-section-mobile.png')",
+        "projects-section-tablet": "url('/images/projects-section-tablet.png')",
+        "projects-section-desktop":
+          "url('/images/projects-section-desktop.png')",
+        "testimonials-section-mobile":
+          "url('/images/testimonials-section-mobile.png')",
+        "testimonials-section-tablet":
+          "url('/images/testimonials-section-tablet.png')",
+        "testimonials-section-desktop":
+          "url('/images/testimonials-section-desktop.png')",
         "testimonial-mobile": "url('/images/testimonial-bg-mobile.png')",
         "testimonial-tablet": "url('/images/testimonial-bg-tablet.png')",
         "testimonial-desktop": "url('/images/testimonial-bg-desktop.png')",
@@ -27,12 +37,12 @@ module.exports = {
           "url('/images/cta-top-left-illustration.png')",
         "cta-bottom-right-illustration":
           "url('/images/cta-bottom-right-illustration.png')",
-        "services-desktop": "url('/images/services-bg-desktop.png')",
-        "services-tablet": "url('/images/services-bg-tablet.png')",
-        "services-mobile": "url('/images/services-bg-mobile.png')",
-        "projects-desktop": "url('/images/projects-bg-desktop.png')",
-        "projects-tablet": "url('/images/projects-bg-tablet.png')",
-        "projects-mobile": "url('/images/projects-bg-mobile.png')",
+        "services-desktop": "url('/images/services-desktop.png')",
+        "services-tablet": "url('/images/services-tablet.png')",
+        "services-mobile": "url('/images/services-mobile.png')",
+        "projects-desktop": "url('/images/projects-desktop.png')",
+        "projects-tablet": "url('/images/projects-tablet.png')",
+        "projects-mobile": "url('/images/projects-mobile.png')",
         "ad-desktop-top": "url('/images/ad-desktop-top.png')",
         "ad-tablet-top": "url('/images/ad-tablet-top.png')",
         "ad-mobile-top": "url('/images/ad-mobile-top.png')",
@@ -45,6 +55,7 @@ module.exports = {
       },
       colors: {
         "gray-primary": "#0C1017",
+        "light-primary": "#CCDAE7",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
