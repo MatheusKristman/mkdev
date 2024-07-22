@@ -8,7 +8,10 @@ import { BsWhatsapp } from "react-icons/bs";
 
 import { ContactForm } from "./contact-form";
 import useModalStore from "@/stores/useModalStore";
-import { overlayAnimation, boxAnimation } from "@/constants/framer/contact-modal-animation";
+import {
+  overlayAnimation,
+  boxAnimation,
+} from "@/constants/framer/contact-modal-animation";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import usePixelStore from "@/stores/usePixelStore";
@@ -19,10 +22,6 @@ export const ContactModal = () => {
 
   const { isContactModalOpen, closeContactModal } = useModalStore();
   const whatsappLink = process.env.NEXT_PUBLIC_WHATSAPP_LINK;
-
-  function redirectToWhatsapp() {
-    window.open(whatsappLink, "_blank");
-  }
 
   useEffect(() => {
     if (isContactModalOpen) {
@@ -44,7 +43,7 @@ export const ContactModal = () => {
             variants={overlayAnimation}
             className={cn(
               "w-full h-full fixed top-0 bottom-0 left-0 right-0 bg-gray-primary/80 backdrop-blur z-50 py-12 px-6 overflow-y-auto md:px-12 before:content-[''] before:h-full before:inline-block before:align-middle",
-              "scrollbar scrollbar-thumb-slate-700 scrollbar-thumb-rounded-lg scrollbar-w-2"
+              "scrollbar scrollbar-thumb-slate-700 scrollbar-thumb-rounded-lg scrollbar-w-2",
             )}
           >
             <motion.div
@@ -60,7 +59,11 @@ export const ContactModal = () => {
                   <div className="w-full bg-gradient-to-r from-light-primary/40 to-transparent h-[1px]" />
                 </span>
 
-                <button type="button" disabled={isSendingMessage} onClick={closeContactModal}>
+                <button
+                  type="button"
+                  disabled={isSendingMessage}
+                  onClick={closeContactModal}
+                >
                   <X size={40} color="#CCDAE7" strokeWidth={1} />
                 </button>
               </div>
@@ -80,8 +83,33 @@ export const ContactModal = () => {
                     </h2>
 
                     <p className="text-base text-light-primary/90 leading-[27px]">
-                      Pronto para ter um site incrível ou melhorar o que já tem? Mande mensagem e vamos começar!
+                      Pronto para ter um site incrível ou melhorar o que já tem?
+                      Mande mensagem e vamos começar!
                     </p>
+                  </div>
+                </div>
+
+                <div className="w-full mt-6 space-y-6">
+                  <Button
+                    asChild
+                    className="w-full bg-transparent border-2 border-[#25D366] text-lg text-[#25D366] flex items-center gap-x-2 hover:bg-[#25D366] hover:text-light-primary"
+                  >
+                    <a
+                      href={whatsappLink}
+                      target="_blank"
+                      rel="noreferrer noopener"
+                    >
+                      <BsWhatsapp />
+                      WhatsApp
+                    </a>
+                  </Button>
+
+                  <div className="w-full flex items-center justify-between gap-x-2">
+                    <div className="w-1/2 h-[1px] bg-light-primary/80" />
+                    <span className="text-lg font-normal text-light-primary">
+                      OU
+                    </span>
+                    <div className="w-1/2 h-[1px] bg-light-primary/80" />
                   </div>
                 </div>
 
@@ -90,24 +118,6 @@ export const ContactModal = () => {
                   isSendingMessage={isSendingMessage}
                   setSendingMessage={setSendingMessage}
                 />
-
-                <div className="w-full mt-6 space-y-6">
-                  <div className="w-full flex items-center justify-between gap-x-2">
-                    <div className="w-1/2 h-[1px] bg-light-primary/80" />
-                    <span className="text-lg font-normal text-light-primary">OU</span>
-                    <div className="w-1/2 h-[1px] bg-light-primary/80" />
-                  </div>
-
-                  <Button
-                    asChild
-                    className="w-full bg-transparent border-2 border-[#25D366] text-lg text-[#25D366] flex items-center gap-x-2 hover:bg-[#25D366] hover:text-light-primary"
-                  >
-                    <a href={whatsappLink} target="_blank" rel="noreferrer noopener">
-                      <BsWhatsapp />
-                      WhatsApp
-                    </a>
-                  </Button>
-                </div>
               </div>
             </motion.div>
           </motion.div>
