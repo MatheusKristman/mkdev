@@ -1,16 +1,12 @@
-"use client";
-
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { motion } from "framer-motion";
-import { useState, useEffect } from "react";
 
 import { cn } from "@/lib/utils";
-import { ProjectBox } from "./project-box";
 import { projectsData } from "@/constants/projects";
-import { projectsWrapperAnimation } from "@/constants/framer/projects/projects-page-animation";
 
-type projectType = {
+import { ProjectsWrapper } from "./projects-wrapper";
+
+export type projectType = {
   desktopUrl: string;
   desktopWidth: number;
   desktopHeight: number;
@@ -20,38 +16,27 @@ type projectType = {
   description: string;
 };
 
-export const ProjectsContent = () => {
-  const [projects, setProjects] = useState<projectType[]>([]);
+export const ProjectsContent = ({ category }: { category: string | undefined }) => {
+  let projects: projectType[] = [];
 
-  const searchParams = useSearchParams();
-  const category = searchParams.get("category");
-
-  useEffect(() => {
-    if (category === "landing-page") {
-      const filteredProjects = projectsData.filter((project) => project.category === "Landing Page");
-
-      setProjects(filteredProjects);
-    } else if (category === "site-institucional") {
-      const filteredProjects = projectsData.filter((project) => project.category === "Site Institucional");
-
-      setProjects(filteredProjects);
-    } else if (category === "plataforma") {
-      const filteredProjects = projectsData.filter((project) => project.category === "Plataforma");
-
-      setProjects(filteredProjects);
-    } else {
-      setProjects(projectsData);
-    }
-  }, [category]);
+  if (category === "landing-page") {
+    projects = projectsData.filter((project) => project.category === "Landing Page");
+  } else if (category === "site-institucional") {
+    projects = projectsData.filter((project) => project.category === "Site Institucional");
+  } else if (category === "plataforma") {
+    projects = projectsData.filter((project) => project.category === "Plataforma");
+  } else {
+    projects = projectsData;
+  }
 
   return (
     <section className="w-full flex flex-col gap-y-12 pb-40 px-6 md:px-16 lg:container lg:mx-auto">
       <h2 className="w-full text-light-primary text-4xl font-bold text-center md:text-5xl">
-        <strong className="text-transparent bg-clip-text bg-gradient-to-r from-gradient-to-br from-[#2670DF] to-[#6E35D6] to-cyan-300">
+        <strong className="text-transparent bg-clip-text bg-gradient-to-r from-gradient-to-br from-[#2670DF] to-[#6E35D6]">
           Projetos
         </strong>{" "}
         que Contam Nossa{" "}
-        <strong className="text-transparent bg-clip-text bg-gradient-to-r from-gradient-to-br from-[#2670DF] to-[#6E35D6] to-cyan-300">
+        <strong className="text-transparent bg-clip-text bg-gradient-to-r from-gradient-to-br from-[#6E35D6] to-cyan-300">
           História
         </strong>
       </h2>
@@ -107,33 +92,7 @@ export const ProjectsContent = () => {
           </Link>
         </div>
 
-        <motion.div
-          initial="initial"
-          animate="animate"
-          variants={projectsWrapperAnimation}
-          className="w-full grid grid-cols-1 lg:grid-cols-2 gap-12"
-        >
-          {projects.length !== 0 ? (
-            projects.map((project, index) => (
-              <ProjectBox
-                key={`${project.title}-${index}`}
-                desktopImage={project.desktopUrl}
-                desktopWidth={project.desktopWidth}
-                desktopHeight={project.desktopHeight}
-                category={project.category}
-                link={project.link}
-                title={project.title}
-                desc={project.description}
-              />
-            ))
-          ) : (
-            <div className="w-full h-36 flex items-center justify-center col-span-2">
-              <span className="text-light-primary/60 text-xl text-center font-semibold max-w-xl lg:text-2xl">
-                Estamos trabalhando em novos projetos para esta categoria. Fique ligado para futuras atualizações!
-              </span>
-            </div>
-          )}
-        </motion.div>
+        <ProjectsWrapper projects={projects} />
       </div>
     </section>
   );
