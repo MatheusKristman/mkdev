@@ -7,12 +7,7 @@ import { usePathname, useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect } from "react";
 
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import useHeaderStore from "@/stores/useHeaderStore";
 import { headerMobileMenuContainer } from "@/constants/framer/header-mobile-menu-animation";
 import useModalStore from "@/stores/useModalStore";
@@ -47,8 +42,6 @@ export const HeaderMobileMenu = () => {
     }, 300);
   }
 
-  console.log(searchParams.get("category"));
-
   return (
     <>
       <AnimatePresence>
@@ -62,48 +55,29 @@ export const HeaderMobileMenu = () => {
           >
             <div className="w-full flex items-center justify-between mb-16">
               <div className="relative h-9 w-20 md:h-11 md:w-24">
-                <Image
-                  src="/images/logo.svg"
-                  alt="MKDev"
-                  fill
-                  className="object-contain"
-                />
+                <Image src="/images/logo.svg" alt="MKDev" fill className="object-contain" />
               </div>
 
-              <button
-                type="button"
-                onClick={closeMenu}
-                className="flex items-center justify-center"
-              >
+              <button type="button" onClick={closeMenu} className="flex items-center justify-center">
                 <X size={40} color="#CCDAE7" strokeWidth={1} />
               </button>
             </div>
 
             <ul className="w-full flex flex-col mb-12">
               <li className="w-full py-6 border-b border-b-light-primary flex items-center justify-between group cursor-pointer">
-                <Link
-                  href="/"
-                  className="text-light-primary text-2xl font-medium group-hover:underline"
-                >
+                <Link href="/" className="text-light-primary text-2xl font-medium group-hover:underline">
                   Início
                 </Link>
 
-                {pathname === "/" && (
-                  <Dot size={40} color="#fff" strokeWidth={3} />
-                )}
+                {pathname === "/" && <Dot size={40} color="#fff" strokeWidth={3} />}
               </li>
 
               <li className="w-full py-6 border-b border-b-light-primary flex items-center justify-between group cursor-pointer">
-                <Link
-                  href="/servicos"
-                  className="text-light-primary text-2xl font-medium group-hover:underline"
-                >
+                <Link href="/servicos" className="text-light-primary text-2xl font-medium group-hover:underline">
                   Serviços
                 </Link>
 
-                {pathname === "/servicos" && (
-                  <Dot size={40} color="#fff" strokeWidth={3} />
-                )}
+                {pathname === "/servicos" && <Dot size={40} color="#fff" strokeWidth={3} />}
               </li>
 
               <li className="w-full">
@@ -123,9 +97,7 @@ export const HeaderMobileMenu = () => {
                             Todos
                           </Link>
 
-                          {!searchParams.get("category") && (
-                            <Dot size={40} color="#fff" strokeWidth={3} />
-                          )}
+                          {!searchParams.get("category") && <Dot size={40} color="#fff" strokeWidth={3} />}
                         </li>
 
                         <li className="w-full py-6 border-b border-b-light-primary flex items-center justify-between group cursor-pointer">
@@ -149,8 +121,7 @@ export const HeaderMobileMenu = () => {
                             Site Institucional
                           </Link>
 
-                          {searchParams.get("category") ===
-                            "site-institucional" && (
+                          {searchParams.get("category") === "site-institucional" && (
                             <Dot size={40} color="#fff" strokeWidth={3} />
                           )}
                         </li>
