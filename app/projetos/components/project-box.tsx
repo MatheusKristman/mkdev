@@ -55,7 +55,7 @@ export const ProjectBox = ({
                 "flex items-center justify-center px-2 py-1 rounded-sm text-white text-sm font-normal text-center",
                 category === "Landing Page" && "bg-[#2670DF]/70",
                 category === "Site Institucional" && "bg-[#44BC87]/70",
-                category === "Plataforma" && "bg-[#5957E2]/70"
+                category === "Plataforma" && "bg-[#5957E2]/70",
               )}
             >
               {category}
