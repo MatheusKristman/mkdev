@@ -1,15 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import { Monitor } from "lucide-react";
 import { motion } from "framer-motion";
 
 import {
   infoContainerAnimation,
-  iconAnimation,
-  textContainerAnimation,
   textAnimation,
-  imageAnimation,
 } from "@/constants/framer/about-animation";
 
 export const About = () => {
