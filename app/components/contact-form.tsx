@@ -7,14 +7,7 @@ import { toast } from "react-hot-toast";
 
 import { contactSchema } from "@/constants/schema/contact-schema";
 import { Button } from "@/components/ui/button";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
@@ -26,11 +19,7 @@ interface ContactFormProps {
   setSendingMessage: Dispatch<SetStateAction<boolean>>;
 }
 
-export const ContactForm = ({
-  closeContactModal,
-  isSendingMessage,
-  setSendingMessage,
-}: ContactFormProps) => {
+export const ContactForm = ({ closeContactModal, isSendingMessage, setSendingMessage }: ContactFormProps) => {
   const { contactSubmitClicked, setContactName } = usePixelStore();
   const form = useForm<z.infer<typeof contactSchema>>({
     resolver: zodResolver(contactSchema),
@@ -85,27 +74,17 @@ export const ContactForm = ({
 
   return (
     <Form {...form}>
-      <form
-        onSubmit={form.handleSubmit(onSubmit)}
-        className="w-full flex flex-col gap-y-12"
-      >
+      <form onSubmit={form.handleSubmit(onSubmit)} className="w-full flex flex-col gap-y-6">
         <div className="w-full flex flex-col gap-y-4">
           <FormField
             control={form.control}
             name="name"
             render={({ field }) => (
               <FormItem className="w-full flex flex-col gap-y-1">
-                <FormLabel className="text-light-primary text-lg font-medium">
-                  Nome
-                </FormLabel>
+                <FormLabel className="text-light-primary text-lg font-medium">Nome</FormLabel>
 
                 <FormControl>
-                  <Input
-                    placeholder="Digite seu nome"
-                    className={inputStyle}
-                    {...field}
-                    disabled={isSendingMessage}
-                  />
+                  <Input placeholder="Digite seu nome" className={inputStyle} {...field} disabled={isSendingMessage} />
                 </FormControl>
 
                 <FormMessage />
@@ -113,69 +92,60 @@ export const ContactForm = ({
             )}
           />
 
-          <FormField
-            control={form.control}
-            name="email"
-            render={({ field }) => (
-              <FormItem className="w-full flex flex-col gap-y-1">
-                <FormLabel className="text-light-primary text-lg font-medium">
-                  E-mail
-                </FormLabel>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full">
+            <FormField
+              control={form.control}
+              name="email"
+              render={({ field }) => (
+                <FormItem className="w-full flex flex-col gap-y-1">
+                  <FormLabel className="text-light-primary text-lg font-medium">E-mail</FormLabel>
 
-                <FormControl>
-                  <Input
-                    placeholder="Digite seu melhor e-mail"
-                    className={inputStyle}
-                    {...field}
-                    disabled={isSendingMessage}
-                  />
-                </FormControl>
+                  <FormControl>
+                    <Input
+                      placeholder="Digite seu melhor e-mail"
+                      className={inputStyle}
+                      {...field}
+                      disabled={isSendingMessage}
+                    />
+                  </FormControl>
 
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
 
-          <FormField
-            control={form.control}
-            name="cel"
-            render={({ field }) => (
-              <FormItem className="w-full flex flex-col gap-y-1">
-                <FormLabel className="text-light-primary text-lg font-medium">
-                  Celular
-                </FormLabel>
+            <FormField
+              control={form.control}
+              name="cel"
+              render={({ field }) => (
+                <FormItem className="w-full flex flex-col gap-y-1">
+                  <FormLabel className="text-light-primary text-lg font-medium">Celular</FormLabel>
 
-                <FormControl>
-                  <Input
-                    placeholder="Digite seu celular"
-                    className={inputStyle}
-                    {...field}
-                    onChange={handleCel}
-                    disabled={isSendingMessage}
-                  />
-                </FormControl>
+                  <FormControl>
+                    <Input
+                      placeholder="Digite seu celular"
+                      className={inputStyle}
+                      {...field}
+                      onChange={handleCel}
+                      disabled={isSendingMessage}
+                    />
+                  </FormControl>
 
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
 
           <FormField
             control={form.control}
             name="subject"
             render={({ field }) => (
               <FormItem className="w-full flex flex-col gap-y-1">
-                <FormLabel className="text-light-primary text-lg font-medium">
-                  Assunto
-                </FormLabel>
+                <FormLabel className="text-light-primary text-lg font-medium">Assunto</FormLabel>
 
                 <FormControl>
-                  <Input
-                    placeholder="Digite o assunto"
-                    className={inputStyle}
-                    {...field}
-                    disabled={isSendingMessage}
-                  />
+                  <Input placeholder="Digite o assunto" className={inputStyle} {...field} disabled={isSendingMessage} />
                 </FormControl>
 
                 <FormMessage />
@@ -188,9 +158,7 @@ export const ContactForm = ({
             name="message"
             render={({ field }) => (
               <FormItem className="w-full flex flex-col gap-y-1">
-                <FormLabel className="text-light-primary text-lg font-medium">
-                  Mensagem
-                </FormLabel>
+                <FormLabel className="text-light-primary text-lg font-medium">Mensagem</FormLabel>
                 <FormControl>
                   <Textarea
                     placeholder="O que podemos ajudar?"

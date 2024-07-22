@@ -14,9 +14,6 @@ type projectType = {
   desktopUrl: string;
   desktopWidth: number;
   desktopHeight: number;
-  mobileUrl: string;
-  mobileWidth: number;
-  mobileHeight: number;
   category: string;
   link: string;
   title: string;
@@ -31,21 +28,15 @@ export const ProjectsContent = () => {
 
   useEffect(() => {
     if (category === "landing-page") {
-      const filteredProjects = projectsData.filter(
-        (project) => project.category === "Landing Page"
-      );
+      const filteredProjects = projectsData.filter((project) => project.category === "Landing Page");
 
       setProjects(filteredProjects);
     } else if (category === "site-institucional") {
-      const filteredProjects = projectsData.filter(
-        (project) => project.category === "Site Institucional"
-      );
+      const filteredProjects = projectsData.filter((project) => project.category === "Site Institucional");
 
       setProjects(filteredProjects);
     } else if (category === "plataforma") {
-      const filteredProjects = projectsData.filter(
-        (project) => project.category === "Plataforma"
-      );
+      const filteredProjects = projectsData.filter((project) => project.category === "Plataforma");
 
       setProjects(filteredProjects);
     } else {
@@ -129,9 +120,6 @@ export const ProjectsContent = () => {
                 desktopImage={project.desktopUrl}
                 desktopWidth={project.desktopWidth}
                 desktopHeight={project.desktopHeight}
-                mobileImage={project.mobileUrl}
-                mobileWidth={project.mobileWidth}
-                mobileHeight={project.mobileHeight}
                 category={project.category}
                 link={project.link}
                 title={project.title}
@@ -141,8 +129,7 @@ export const ProjectsContent = () => {
           ) : (
             <div className="w-full h-36 flex items-center justify-center col-span-2">
               <span className="text-light-primary/60 text-xl text-center font-semibold max-w-xl lg:text-2xl">
-                Estamos trabalhando em novos projetos para esta categoria. Fique
-                ligado para futuras atualizações!
+                Estamos trabalhando em novos projetos para esta categoria. Fique ligado para futuras atualizações!
               </span>
             </div>
           )}

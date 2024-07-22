@@ -8,10 +8,7 @@ import { BsWhatsapp } from "react-icons/bs";
 
 import { ContactForm } from "./contact-form";
 import useModalStore from "@/stores/useModalStore";
-import {
-  overlayAnimation,
-  boxAnimation,
-} from "@/constants/framer/contact-modal-animation";
+import { overlayAnimation, boxAnimation } from "@/constants/framer/contact-modal-animation";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import usePixelStore from "@/stores/usePixelStore";
@@ -21,6 +18,11 @@ export const ContactModal = () => {
   const [isSendingMessage, setSendingMessage] = useState<boolean>(false);
 
   const { isContactModalOpen, closeContactModal } = useModalStore();
+  const whatsappLink = process.env.NEXT_PUBLIC_WHATSAPP_LINK;
+
+  function redirectToWhatsapp() {
+    window.open(whatsappLink, "_blank");
+  }
 
   useEffect(() => {
     if (isContactModalOpen) {
@@ -58,17 +60,13 @@ export const ContactModal = () => {
                   <div className="w-full bg-gradient-to-r from-light-primary/40 to-transparent h-[1px]" />
                 </span>
 
-                <button
-                  type="button"
-                  disabled={isSendingMessage}
-                  onClick={closeContactModal}
-                >
+                <button type="button" disabled={isSendingMessage} onClick={closeContactModal}>
                   <X size={40} color="#CCDAE7" strokeWidth={1} />
                 </button>
               </div>
 
               <div className="w-full">
-                <div className="w-full flex mb-12 gap-x-5 md:max-w-lg lg:max-w-2xl">
+                <div className="w-full flex mb-6 gap-x-5 md:max-w-lg lg:max-w-2xl">
                   <span className="bg-[#1161DA] rounded-full p-3 flex items-center justify-center h-fit w-fit shadow-[0px_6px_13px_#126CB1]">
                     <Phone color="#CCDAE7" size={25} />
                   </span>
@@ -82,8 +80,7 @@ export const ContactModal = () => {
                     </h2>
 
                     <p className="text-base text-light-primary/90 leading-[27px]">
-                      Pronto para ter um site incrível ou melhorar o que já tem?
-                      Mande mensagem e vamos começar!
+                      Pronto para ter um site incrível ou melhorar o que já tem? Mande mensagem e vamos começar!
                     </p>
                   </div>
                 </div>
@@ -97,9 +94,7 @@ export const ContactModal = () => {
                 <div className="w-full mt-6 space-y-6">
                   <div className="w-full flex items-center justify-between gap-x-2">
                     <div className="w-1/2 h-[1px] bg-light-primary/80" />
-                    <span className="text-lg font-normal text-light-primary">
-                      OU
-                    </span>
+                    <span className="text-lg font-normal text-light-primary">OU</span>
                     <div className="w-1/2 h-[1px] bg-light-primary/80" />
                   </div>
 
@@ -107,11 +102,7 @@ export const ContactModal = () => {
                     asChild
                     className="w-full bg-transparent border-2 border-[#25D366] text-lg text-[#25D366] flex items-center gap-x-2 hover:bg-[#25D366] hover:text-light-primary"
                   >
-                    <a
-                      href="https://w.app/MKDev"
-                      target="_blank"
-                      rel="noreferrer noopener"
-                    >
+                    <a href={whatsappLink} target="_blank" rel="noreferrer noopener">
                       <BsWhatsapp />
                       WhatsApp
                     </a>
