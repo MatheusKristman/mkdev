@@ -10,7 +10,7 @@ import {
 
 export const About = () => {
   return (
-    <section className="relative w-full px-6 py-12 flex flex-col md:px-16 md:py-24 md:mb-24 md:gap-y-12 lg:py-36 lg:container lg:mx-auto lg:flex-row lg:justify-center lg:items-center">
+    <section className="relative w-full px-6 py-12 flex flex-col mb-40 md:px-16 md:py-24 md:gap-y-12 lg:py-36 lg:container lg:mx-auto lg:flex-row lg:justify-center lg:items-center">
       <Image
         src="/images/about-grid.png"
         alt="Conectando Marcas ao Mundo Digital."
