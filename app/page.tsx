@@ -20,9 +20,12 @@ export default function Home() {
         <Services />
       </div>
       <About />
-      <div className="w-full bg-testimonials-section-mobile bg-no-repeat bg-[length:100%_100%] sm:bg-testimonials-section-tablet lg:bg-testimonials-section-desktop">
+
+      {/* TODO: adicionar depoimentos quando tiver clientes que mandaram */}
+      {/* <div className="w-full bg-testimonials-section-mobile bg-no-repeat bg-[length:100%_100%] sm:bg-testimonials-section-tablet lg:bg-testimonials-section-desktop">
         <Testimonial />
-      </div>
+      </div> */}
+
       <Footer />
     </>
   );
