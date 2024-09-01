@@ -8,12 +8,7 @@ import { Dot, Layers3 } from "lucide-react";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import {
   titleContainerAnimation,
   titleAnimation,
@@ -63,9 +58,7 @@ export const Services = () => {
             className="text-light-primary text-3xl font-bold text-left md:max-w-lg md:text-4xl"
           >
             O seu{" "}
-            <strong className="bg-gradient-to-r from-[#645EC4] to-[#44BC87] text-transparent bg-clip-text">
-              Site
-            </strong>
+            <strong className="bg-gradient-to-r from-[#645EC4] to-[#44BC87] text-transparent bg-clip-text">Site</strong>
             , a Nossa{" "}
             <strong className="bg-gradient-to-r from-[#4AA993] to-[#3BD776] text-transparent bg-clip-text">
               Paixão:{" "}
@@ -86,12 +79,7 @@ export const Services = () => {
           variants={cardsAnimation}
           className="w-full lg:max-w-md"
         >
-          <Accordion
-            type="single"
-            collapsible
-            value={accordionValue}
-            onValueChange={setAccordionValue}
-          >
+          <Accordion type="single" collapsible value={accordionValue} onValueChange={setAccordionValue}>
             <AccordionItem
               value="landing-page"
               className="data-[state='closed']:bg-[#11161F] data-[state='open']:bg-[#222C3A] transition-colors px-6 py-4 rounded-xl mb-6 border-2 border-[#222C3A]"
@@ -103,22 +91,20 @@ export const Services = () => {
                       accordionValue === "landing-page"
                         ? "bg-light-primary text-[#222C3A]"
                         : "bg-transparent text-light-primary",
-                      "rounded-full text-xl font-bold w-10 h-10 flex items-center justify-center transition-colors",
+                      "rounded-full text-xl font-bold w-10 h-10 flex items-center justify-center transition-colors"
                     )}
                   >
                     1
                   </span>
 
-                  <h4 className="text-light-primary text-xl font-semibold">
-                    Landing Page
-                  </h4>
+                  <h4 className="text-light-primary text-xl font-semibold">Landing Page</h4>
                 </div>
               </AccordionTrigger>
 
               <AccordionContent>
                 <p className="text-light-primary text-base leading-[25px] ml-[60px] mb-6">
-                  Transforme visitantes em clientes com páginas direcionadas,
-                  destacando ofertas específicas para máxima conversão.
+                  Transforme visitantes em clientes com páginas direcionadas, destacando ofertas específicas para máxima
+                  conversão.
                 </p>
 
                 <Link
@@ -141,22 +127,20 @@ export const Services = () => {
                       accordionValue === "site-institucional"
                         ? "bg-light-primary text-[#222C3A]"
                         : "bg-transparent text-light-primary",
-                      "rounded-full text-xl font-bold w-10 h-10 flex items-center justify-center transition-colors",
+                      "rounded-full text-xl font-bold w-10 h-10 flex items-center justify-center transition-colors"
                     )}
                   >
                     2
                   </span>
 
-                  <h4 className="text-light-primary text-xl font-semibold">
-                    Site Institucional
-                  </h4>
+                  <h4 className="text-light-primary text-xl font-semibold">Site Institucional</h4>
                 </div>
               </AccordionTrigger>
 
               <AccordionContent>
                 <p className="text-light-primary text-base leading-[25px] ml-[60px] mb-6">
-                  Vitrine online que revela identidade, valores e serviços,
-                  construindo confiança e relacionamentos duradouros.
+                  Vitrine online que revela identidade, valores e serviços, construindo confiança e relacionamentos
+                  duradouros.
                 </p>
 
                 <Link
@@ -179,22 +163,20 @@ export const Services = () => {
                       accordionValue === "plataforma"
                         ? "bg-light-primary text-[#222C3A]"
                         : "bg-transparent text-light-primary",
-                      "rounded-full text-xl font-bold w-10 h-10 flex items-center justify-center transition-colors",
+                      "rounded-full text-xl font-bold w-10 h-10 flex items-center justify-center transition-colors"
                     )}
                   >
                     3
                   </span>
 
-                  <h4 className="text-light-primary text-xl font-semibold">
-                    Plataforma
-                  </h4>
+                  <h4 className="text-light-primary text-xl font-semibold">Plataforma</h4>
                 </div>
               </AccordionTrigger>
 
               <AccordionContent>
                 <p className="text-light-primary text-base leading-[25px] ml-[60px] mb-6">
-                  Solução robusta para interatividade avançada, comércio
-                  eletrônico e experiências online dinâmicas e personalizadas.
+                  Solução robusta para interatividade avançada, comércio eletrônico e experiências online dinâmicas e
+                  personalizadas.
                 </p>
 
                 <Link
@@ -236,11 +218,13 @@ export const Services = () => {
                 >
                   <SwiperSlide className="relative w-full aspect-square">
                     <Image
-                      src="/images/landing-page-desktop.png"
+                      src="/images/landing-page-desktop.webp"
+                      blurDataURL="/images/landing-page-desktop-compressed.png"
                       alt="Projeto"
                       fill
                       className="object-cover object-top"
                       priority
+                      placeholder="blur"
                     />
                   </SwiperSlide>
                 </Swiper>
@@ -252,11 +236,13 @@ export const Services = () => {
                 >
                   <SwiperSlide className="relative w-full aspect-square">
                     <Image
-                      src="/images/hanazaki-studio-desktop.png"
+                      src="/images/hanazaki-studio-desktop.webp"
+                      blurDataURL="/images/hanazaki-studio-desktop-compressed.png"
                       alt="Projeto"
                       fill
                       className="object-cover object-top"
                       priority
+                      placeholder="blur"
                     />
                   </SwiperSlide>
                 </Swiper>
@@ -268,21 +254,25 @@ export const Services = () => {
                 >
                   <SwiperSlide className="relative w-full aspect-square">
                     <Image
-                      src="/images/platform-desktop.png"
+                      src="/images/platform-desktop.webp"
+                      blurDataURL="/images/platform-desktop-compressed.png"
                       alt="Projeto"
                       fill
                       className="object-cover object-top"
                       priority
+                      placeholder="blur"
                     />
                   </SwiperSlide>
 
                   <SwiperSlide className="relative w-full aspect-square">
                     <Image
-                      src="/images/o-sapiente-desktop.png"
+                      src="/images/o-sapiente-desktop.webp"
+                      blurDataURL="/images/o-sapiente-desktop-compressed.png"
                       alt="Projeto"
                       fill
                       className="object-cover object-top"
                       priority
+                      placeholder="blur"
                     />
                   </SwiperSlide>
                 </Swiper>
