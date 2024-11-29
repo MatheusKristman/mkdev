@@ -30,6 +30,16 @@ export const projectsData = [
       "A Hanazaki Studio oferece soluções personalizadas em visualização arquitetônica, buscando atender às necessidades específicas de cada cliente para impulsionar vendas e alcançar metas empresariais. Conheça as oportunidades para potencializar seu empreendimento.",
   },
   {
+    desktopUrl: "/images/cp-vistos-desktop.webp",
+    desktopWidth: 1920,
+    desktopHeight: 4617,
+    category: "Site Institucional",
+    link: "https://www.cpvistos.com.br/",
+    title: "CP Vistos",
+    description:
+      "Desenvolvi o site institucional da CP Vistos, uma assessoria especializada em serviços relacionados a vistos e passaportes. O projeto incluiu a criação de um design moderno e responsivo, enfatizando a confiabilidade e experiência da empresa, que conta com mais de 20 anos de mercado, 98% de aprovação e mais de 2000 clientes atendidos.",
+  },
+  {
     desktopUrl: "/images/o-sapiente-desktop.webp",
     desktopWidth: 1920,
     desktopHeight: 4043,
