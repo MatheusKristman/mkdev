@@ -49,4 +49,14 @@ export const projectsData = [
     description:
       "O Sapiente é uma plataforma que conecta alunos a professores qualificados, oferecendo um ambiente integrado para a realização de aulas. Com uma interface amigável e funcionalidades robustas, o Sapiente facilita a busca por professores e a realização de aulas através de um sistema de chat intuitivo.",
   },
+  {
+    desktopUrl: "/images/zuro.webp",
+    desktopWidth: 1920,
+    desktopHeight: 1080,
+    category: "Plataforma",
+    link: "https://zuro.app/",
+    title: "Zuro",
+    description:
+      "Zuro é uma plataforma que facilita o dia a dia de profissionais, permitindo que eles criem um link personalizado para compartilhar com seus clientes. Através desse link, os clientes podem visualizar os horários disponíveis e agendar de forma prática. Além disso, a plataforma conta com integração com o Google Agenda, garantindo mais organização e sincronização automática dos compromissos.",
+  },
 ];
