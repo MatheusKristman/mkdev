@@ -1,32 +1,44 @@
-import { Header } from "./components/header";
-import { HeaderMobileMenu } from "./components/header-mobile-menu";
 import { Hero } from "./components/hero";
 import { About } from "./components/about";
-import { Services } from "./components/services";
-import { Testimonial } from "./components/testimonial";
+import { Header } from "./components/header";
 import { Footer } from "./components/footer";
+import { Services } from "./components/services";
+import { LoginModal } from "./components/login-modal";
 import { ContactModal } from "./components/contact-modal";
+import { RegisterModal } from "./components/register-modal";
+import { HeaderMobileMenu } from "./components/header-mobile-menu";
+import { ForgotPasswordModal } from "./components/forgot-password-modal";
+import { PasswordRecoveryModal } from "./components/password-recovery-modal";
+import { PasswordRecoveryMessageModal } from "./components/password-recovery-message-modal";
 
 export default function Home() {
-  return (
-    <>
-      <ContactModal />
-      <div className="w-full h-full bg-hero-mobile bg-no-repeat bg-[length:100%_100%] sm:bg-hero-tablet lg:bg-hero-desktop">
-        <Header />
-        <HeaderMobileMenu />
-        <Hero />
-      </div>
-      <div className="w-full bg-projects-section-mobile bg-no-repeat bg-[length:100%_100%] sm:bg-projects-section-tablet lg:bg-projects-section-desktop">
-        <Services />
-      </div>
-      <About />
+    return (
+        <>
+            <ContactModal />
+            <LoginModal />
+            <RegisterModal />
+            <ForgotPasswordModal />
+            <PasswordRecoveryMessageModal />
+            <PasswordRecoveryModal />
 
-      {/* TODO: adicionar depoimentos quando tiver clientes que mandaram */}
-      {/* <div className="w-full bg-testimonials-section-mobile bg-no-repeat bg-[length:100%_100%] sm:bg-testimonials-section-tablet lg:bg-testimonials-section-desktop">
+            <div className="w-full h-full bg-hero-mobile bg-no-repeat bg-[length:100%_100%] sm:bg-hero-tablet lg:bg-hero-desktop">
+                <Header />
+                <HeaderMobileMenu />
+                <Hero />
+            </div>
+
+            <div className="w-full bg-projects-section-mobile bg-no-repeat bg-[length:100%_100%] sm:bg-projects-section-tablet lg:bg-projects-section-desktop">
+                <Services />
+            </div>
+
+            <About />
+
+            {/* TODO: adicionar depoimentos quando tiver clientes que mandaram */}
+            {/* <div className="w-full bg-testimonials-section-mobile bg-no-repeat bg-[length:100%_100%] sm:bg-testimonials-section-tablet lg:bg-testimonials-section-desktop">
         <Testimonial />
       </div> */}
 
-      <Footer />
-    </>
-  );
+            <Footer />
+        </>
+    );
 }
