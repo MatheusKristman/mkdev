@@ -2,6 +2,7 @@
 
 import { z } from "zod";
 import { useState } from "react";
+import { signIn } from "next-auth/react";
 import { useForm } from "react-hook-form";
 import { EyeIcon, EyeOffIcon } from "lucide-react";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -20,7 +21,7 @@ import {
 } from "@/components/ui/form";
 import useModalStore from "@/stores/useModalStore";
 
-const loginSchema = z.object({
+export const loginSchema = z.object({
     email: z
         .string()
         .min(1, { message: "E-mail é obrigatório" })
@@ -45,7 +46,11 @@ export const LoginForm = () => {
     });
 
     const onSubmit = (values: z.infer<typeof loginSchema>) => {
-        console.log({ values });
+        signIn("credentials", {
+            ...values,
+            redirect: false,
+            redirectTo: "/dashboard",
+        });
     };
 
     const handlePasswordVisibility = () => {
@@ -91,7 +96,7 @@ export const LoginForm = () => {
                                     <Input
                                         className={cn(
                                             form.formState.errors.email &&
-                                                "border-destructive focus-visible:shadow-destructive"
+                                                "border-destructive focus-visible:shadow-destructive",
                                         )}
                                         {...field}
                                     />
@@ -117,7 +122,7 @@ export const LoginForm = () => {
                                                 "pr-14",
                                                 form.formState.errors
                                                     .password &&
-                                                    "border-destructive focus-visible:shadow-destructive"
+                                                    "border-destructive focus-visible:shadow-destructive",
                                             )}
                                             {...field}
                                         />
@@ -130,7 +135,7 @@ export const LoginForm = () => {
                                                 "absolute right-2 top-1/2 -translate-y-1/2",
                                                 form.formState.errors
                                                     .password &&
-                                                    "text-destructive"
+                                                    "text-destructive",
                                             )}
                                             onClick={handlePasswordVisibility}
                                         >

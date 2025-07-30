@@ -3,10 +3,12 @@
 import { z } from "zod";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { EyeIcon, EyeOffIcon } from "lucide-react";
+import { EyeIcon, EyeOffIcon, Loader2Icon } from "lucide-react";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { cn } from "@/lib/utils";
+import useModalStore from "@/stores/useModalStore";
+import { registerSchema } from "@/constants/schema/register-schema";
 
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -18,40 +20,9 @@ import {
     FormLabel,
     FormMessage,
 } from "@/components/ui/form";
-import useModalStore from "@/stores/useModalStore";
-
-const registerSchema = z
-    .object({
-        name: z.string().min(1, { message: "Nome é obrigatório" }),
-        cel: z
-            .string()
-            .min(1, { message: "Celular é obrigatório" })
-            .max(15, { message: "Celular inválido" }),
-        email: z
-            .string()
-            .min(1, { message: "E-mail é obrigatório" })
-            .email({ message: "E-mail inválido" }),
-        password: z
-            .string()
-            .min(1, { message: "Senha é obrigatória" })
-            .min(6, { message: "Senha precisa ter no mínimo 6 caracteres" }),
-        confirmPassword: z
-            .string()
-            .min(1, { message: "Confirmação da senha é obrigatória" })
-            .min(6, {
-                message:
-                    "Confirmação da senha precisa ter no mínimo 6 caracteres",
-            }),
-    })
-    .superRefine(({ password, confirmPassword }, ctx) => {
-        if (confirmPassword !== password) {
-            ctx.addIssue({
-                code: "custom",
-                message: "Senhas não coincidem",
-                path: ["confirmPassword"],
-            });
-        }
-    });
+import { useTRPC } from "@/trpc/client";
+import { useMutation } from "@tanstack/react-query";
+import toast from "react-hot-toast";
 
 export const RegisterForm = () => {
     const [passwordVisibility, setPasswordVisibility] = useState<
@@ -61,7 +32,18 @@ export const RegisterForm = () => {
         "password" | "text"
     >("password");
 
+    const trpc = useTRPC();
+
     const { closeRegisterModal, openLoginModal } = useModalStore();
+
+    const { mutate: register, isPending } = useMutation(
+        trpc.users.register.mutationOptions({
+            onSuccess: (data) => {
+                toast.success(data.message);
+                closeRegisterModal();
+            },
+        })
+    );
 
     const form = useForm<z.infer<typeof registerSchema>>({
         resolver: zodResolver(registerSchema),
@@ -75,7 +57,7 @@ export const RegisterForm = () => {
     });
 
     const onSubmit = (values: z.infer<typeof registerSchema>) => {
-        console.log({ values });
+        register(values);
     };
 
     const handlePasswordVisibility = () => {
@@ -124,6 +106,7 @@ export const RegisterForm = () => {
                                             form.formState.errors.name &&
                                                 "border-destructive focus-visible:shadow-destructive"
                                         )}
+                                        disabled={isPending}
                                         {...field}
                                     />
                                 </FormControl>
@@ -146,6 +129,7 @@ export const RegisterForm = () => {
                                             form.formState.errors.cel &&
                                                 "border-destructive focus-visible:shadow-destructive"
                                         )}
+                                        disabled={isPending}
                                         {...field}
                                     />
                                 </FormControl>
@@ -168,6 +152,7 @@ export const RegisterForm = () => {
                                             form.formState.errors.email &&
                                                 "border-destructive focus-visible:shadow-destructive"
                                         )}
+                                        disabled={isPending}
                                         {...field}
                                     />
                                 </FormControl>
@@ -194,6 +179,7 @@ export const RegisterForm = () => {
                                                     .password &&
                                                     "border-destructive focus-visible:shadow-destructive"
                                             )}
+                                            disabled={isPending}
                                             {...field}
                                         />
 
@@ -207,6 +193,7 @@ export const RegisterForm = () => {
                                                     .password &&
                                                     "text-destructive"
                                             )}
+                                            disabled={isPending}
                                             onClick={handlePasswordVisibility}
                                         >
                                             {passwordVisibility ===
@@ -241,6 +228,7 @@ export const RegisterForm = () => {
                                                     .confirmPassword &&
                                                     "border-destructive focus-visible:shadow-destructive"
                                             )}
+                                            disabled={isPending}
                                             {...field}
                                         />
 
@@ -254,6 +242,7 @@ export const RegisterForm = () => {
                                                     .confirmPassword &&
                                                     "text-destructive"
                                             )}
+                                            disabled={isPending}
                                             onClick={
                                                 handleConfirmPasswordVisibility
                                             }
@@ -275,8 +264,14 @@ export const RegisterForm = () => {
                 </div>
 
                 <div className="space-y-6">
-                    <Button size="lg" className="w-full">
-                        Criar conta
+                    <Button
+                        type="submit"
+                        size="lg"
+                        className="w-full"
+                        disabled={isPending}
+                    >
+                        Criar conta{" "}
+                        {isPending && <Loader2Icon className="animate-spin" />}
                     </Button>
 
                     <div className="w-full h-px bg-white/10" />
@@ -288,6 +283,7 @@ export const RegisterForm = () => {
                             variant="link"
                             size="link"
                             className="text-base font-semibold"
+                            disabled={isPending}
                             onClick={handleLoginModal}
                         >
                             Faça o login
