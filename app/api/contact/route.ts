@@ -6,7 +6,10 @@ export async function POST(request: Request) {
         const { email, name, cel, subject, message } = body;
 
         if (!email || !name || !cel || !subject || !message) {
-            return new Response("Dados invalidos, verifique e tente novamente", { status: 400 });
+            return new Response(
+                "Dados invalidos, verifique e tente novamente",
+                { status: 400 },
+            );
         }
 
         const transporter = nodemailer.createTransport({
@@ -57,12 +60,17 @@ export async function POST(request: Request) {
             });
         });
 
-        return Response.json({ message: "Mensagem enviada com sucesso, aguarde nosso contato" });
+        return Response.json({
+            message: "Mensagem enviada com sucesso, aguarde nosso contato",
+        });
     } catch (error: any) {
         console.log("[ERROR_CONTACT]", error);
 
-        return new Response("Ocorreu um erro no envio da mensagem, tente novamente mais tarde!", {
-            status: 500,
-        });
+        return new Response(
+            "Ocorreu um erro no envio da mensagem, tente novamente mais tarde!",
+            {
+                status: 500,
+            },
+        );
     }
 }

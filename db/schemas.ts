@@ -12,4 +12,8 @@ export const users = pgTable("users", {
     emailVerified: timestamp("emailVerified", { mode: "date" }),
     password: text("password").notNull(),
     role: roleEnum().default("user"),
+    passwordRecoveryToken: text("passwordRecoveryToken"),
+    passwordRecoveryExpiresIn: timestamp("passwordRecoveryExpiresIn", {
+        mode: "date",
+    }),
 });

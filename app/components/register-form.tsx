@@ -141,14 +141,6 @@ export const RegisterForm = () => {
                                             />
                                         )}
                                     </InputMask>
-
-                                    {/* <Input */}
-                                    {/*     className={cn( */}
-                                    {/*         form.formState.errors.cel && */}
-                                    {/*             "border-destructive focus-visible:shadow-destructive", */}
-                                    {/*     )} */}
-                                    {/*     {...field} */}
-                                    {/* /> */}
                                 </FormControl>
 
                                 <FormMessage />
