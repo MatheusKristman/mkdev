@@ -5,7 +5,7 @@ import Credentials from "next-auth/providers/credentials";
 
 import { db } from "@/lib/db";
 import { users } from "./db/schemas";
-import { loginSchema } from "./app/components/login-form";
+import { loginSchema } from "@/constants/schema/login-schema";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
     providers: [
@@ -16,11 +16,8 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             },
             authorize: async (credentials) => {
                 try {
-                    let user = null;
-
-                    const { email, password } = await loginSchema.parseAsync(
-                        credentials
-                    );
+                    const { email, password } =
+                        await loginSchema.parseAsync(credentials);
 
                     const existingUserQuery = await db
                         .select()
@@ -35,18 +32,24 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
                     const isPasswordCorrect = await compare(
                         password,
-                        existingUser.password
+                        existingUser.password,
                     );
 
                     if (!isPasswordCorrect) {
                         throw new Error("Credenciais inválidas");
                     }
 
-                    return user;
+                    return existingUser;
                 } catch (error) {
+                    console.log(error);
+
                     return null;
                 }
             },
         }),
     ],
+    pages: {
+        signIn: "/",
+        signOut: "/",
+    },
 });

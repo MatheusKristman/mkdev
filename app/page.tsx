@@ -10,8 +10,11 @@ import { HeaderMobileMenu } from "./components/header-mobile-menu";
 import { ForgotPasswordModal } from "./components/forgot-password-modal";
 import { PasswordRecoveryModal } from "./components/password-recovery-modal";
 import { PasswordRecoveryMessageModal } from "./components/password-recovery-message-modal";
+import { auth } from "@/auth";
 
-export default function Home() {
+export default async function Home() {
+    const session = await auth();
+
     return (
         <>
             <ContactModal />
@@ -22,8 +25,8 @@ export default function Home() {
             <PasswordRecoveryModal />
 
             <div className="w-full h-full bg-hero-mobile bg-no-repeat bg-[length:100%_100%] sm:bg-hero-tablet lg:bg-hero-desktop">
-                <Header />
-                <HeaderMobileMenu />
+                <Header isAuthed={!!session} />
+                <HeaderMobileMenu isAuthed={!!session} />
                 <Hero />
             </div>
 

@@ -4,6 +4,7 @@ import { baseProcedure, createTRPCRouter } from "@/trpc/init";
 import { registerSchema } from "@/constants/schema/register-schema";
 import { db } from "@/lib/db";
 import { users } from "@/db/schemas";
+import { signIn } from "@/auth";
 
 export const usersRouter = createTRPCRouter({
     register: baseProcedure
@@ -20,6 +21,12 @@ export const usersRouter = createTRPCRouter({
                 cel,
             });
 
-            return { message: "Cadastro realizado com sucesso" };
+            await signIn("credentials", { email, password, redirect: false });
+
+            return {
+                message: "Cadastro realizado com sucesso",
+                email,
+                password,
+            };
         }),
 });

@@ -2,12 +2,15 @@
 
 import { z } from "zod";
 import { useState } from "react";
+import toast from "react-hot-toast";
 import { signIn } from "next-auth/react";
 import { useForm } from "react-hook-form";
-import { EyeIcon, EyeOffIcon } from "lucide-react";
+import { EyeIcon, EyeOffIcon, Loader2, Loader2Icon } from "lucide-react";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { cn } from "@/lib/utils";
+import useModalStore from "@/stores/useModalStore";
+import { loginSchema } from "@/constants/schema/login-schema";
 
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -19,23 +22,18 @@ import {
     FormControl,
     FormMessage,
 } from "@/components/ui/form";
-import useModalStore from "@/stores/useModalStore";
-
-export const loginSchema = z.object({
-    email: z
-        .string()
-        .min(1, { message: "E-mail é obrigatório" })
-        .email({ message: "E-mail inválido" }),
-    password: z.string().min(1, { message: "Senha é obrigatória" }),
-});
+import { useRouter } from "next/navigation";
 
 export const LoginForm = () => {
     const [passwordVisibility, setPasswordVisibility] = useState<
         "password" | "text"
     >("password");
+    const [isLoading, setIsLoading] = useState<boolean>(false);
 
     const { closeLoginModal, openRegisterModal, openForgotPasswordModal } =
         useModalStore();
+
+    const router = useRouter();
 
     const form = useForm<z.infer<typeof loginSchema>>({
         resolver: zodResolver(loginSchema),
@@ -45,12 +43,26 @@ export const LoginForm = () => {
         },
     });
 
-    const onSubmit = (values: z.infer<typeof loginSchema>) => {
-        signIn("credentials", {
-            ...values,
-            redirect: false,
-            redirectTo: "/dashboard",
-        });
+    const onSubmit = async (values: z.infer<typeof loginSchema>) => {
+        setIsLoading(true);
+
+        try {
+            const response = await signIn("credentials", {
+                ...values,
+                redirect: false,
+            });
+
+            if (response.error) {
+                toast.error("Credenciais inválidas");
+            }
+
+            closeLoginModal();
+            router.refresh();
+        } catch (error) {
+            console.error("Erro no login: ", error);
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     const handlePasswordVisibility = () => {
@@ -98,6 +110,7 @@ export const LoginForm = () => {
                                             form.formState.errors.email &&
                                                 "border-destructive focus-visible:shadow-destructive",
                                         )}
+                                        disabled={isLoading}
                                         {...field}
                                     />
                                 </FormControl>
@@ -124,6 +137,7 @@ export const LoginForm = () => {
                                                     .password &&
                                                     "border-destructive focus-visible:shadow-destructive",
                                             )}
+                                            disabled={isLoading}
                                             {...field}
                                         />
 
@@ -137,6 +151,7 @@ export const LoginForm = () => {
                                                     .password &&
                                                     "text-destructive",
                                             )}
+                                            disabled={isLoading}
                                             onClick={handlePasswordVisibility}
                                         >
                                             {passwordVisibility ===
@@ -156,8 +171,9 @@ export const LoginForm = () => {
                 </div>
 
                 <div className="space-y-6">
-                    <Button size="lg" className="w-full">
-                        Entrar
+                    <Button size="lg" className="w-full" disabled={isLoading}>
+                        Entrar{" "}
+                        {isLoading && <Loader2Icon className="animate-spin" />}
                     </Button>
 
                     <div className="w-full h-px bg-white/10" />

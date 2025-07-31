@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Lato } from "next/font/google";
-import { AlignRight, ChevronDown } from "lucide-react";
+import { AlignRight, ChevronDown, LogOut } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 
 import { cn } from "@/lib/utils";
@@ -15,10 +15,15 @@ import {
 import useHeaderStore from "@/stores/useHeaderStore";
 import useModalStore from "@/stores/useModalStore";
 import { Button } from "@/components/ui/button";
+import { signOut } from "next-auth/react";
 
 const lato = Lato({ subsets: ["latin"], weight: ["400", "700", "900"] });
 
-export const Header = () => {
+interface HeaderProps {
+    isAuthed: boolean;
+}
+
+export const Header = ({ isAuthed }: HeaderProps) => {
     const pathname = usePathname();
     const router = useRouter();
     const { openMenu } = useHeaderStore();
@@ -52,93 +57,117 @@ export const Header = () => {
                 <AlignRight color="#CCDAE7" size={40} strokeWidth={1} />
             </button>
 
-            <ul className="hidden lg:flex items-center justify-end gap-x-9">
-                <li
-                    className={cn(
-                        "relative text-light-primary text-xl font-medium before:content-[''] before:w-0 before:h-[2px] before:bg-light-primary before:absolute before:-bottom-1 before:right-0 after:content-[''] after:w-0 after:h-[2px] after:bg-light-primary after:absolute after:-bottom-3 after:right-0 hover:before:w-full hover:after:w-1/2 before:transition-[width] after:transition-[width]",
-                        lato.className,
-                        pathname === "/" && "before:w-full after:w-1/2",
-                    )}
-                >
-                    <Link href="/">Início</Link>
-                </li>
-
-                <li
-                    className={cn(
-                        "relative text-light-primary text-xl font-medium before:content-[''] before:w-0 before:h-[2px] before:bg-light-primary before:absolute before:-bottom-1 before:right-0 after:content-[''] after:w-0 after:h-[2px] after:bg-light-primary after:absolute after:-bottom-3 after:right-0 hover:before:w-full hover:after:w-1/2 before:transition-[width] after:transition-[width]",
-                        lato.className,
-                        pathname === "/servicos" && "before:w-full after:w-1/2",
-                    )}
-                >
-                    <Link href="/servicos">Serviços</Link>
-                </li>
-
-                <li
-                    className={cn(
-                        "text-light-primary text-xl font-medium cursor-pointer",
-                        lato.className,
-                    )}
-                >
-                    <Popover>
-                        <PopoverTrigger className="flex items-center gap-x-1">
-                            Projetos <ChevronDown size={20} />
-                        </PopoverTrigger>
-
-                        <PopoverContent className="w-52 bg-[#10161F] border-[#10161F]">
-                            <div className="flex flex-col gap-y-4 items-center">
-                                <Link
-                                    href="/projetos"
-                                    className={cn(
-                                        "text-light-primary/70 font-medium text-base hover:text-light-primary transition",
-                                    )}
-                                >
-                                    Todos
-                                </Link>
-
-                                <Link
-                                    href="/projetos?category=landing-page"
-                                    className={cn(
-                                        "text-light-primary/70 font-medium text-base hover:text-light-primary transition",
-                                    )}
-                                >
-                                    Landing Page
-                                </Link>
-
-                                <Link
-                                    href="/projetos?category=site-institucional"
-                                    className="text-light-primary/70 font-medium text-base hover:text-light-primary transition"
-                                >
-                                    Site Institucional
-                                </Link>
-
-                                <Link
-                                    href="/projetos?category=plataforma"
-                                    className="text-light-primary/70 font-medium text-base hover:text-light-primary transition"
-                                >
-                                    Plataforma
-                                </Link>
-                            </div>
-                        </PopoverContent>
-                    </Popover>
-                </li>
-
-                <li>
-                    <Button
-                        type="button"
-                        variant="outline"
-                        size="lg"
-                        onClick={openContactModal}
+            <div className="hidden lg:flex items-center justify-end gap-x-9">
+                <ul className="hidden lg:flex items-center justify-end gap-x-9">
+                    <li
+                        className={cn(
+                            "relative text-light-primary text-xl font-medium before:content-[''] before:w-0 before:h-[2px] before:bg-light-primary before:absolute before:-bottom-1 before:right-0 after:content-[''] after:w-0 after:h-[2px] after:bg-light-primary after:absolute after:-bottom-3 after:right-0 hover:before:w-full hover:after:w-1/2 before:transition-[width] after:transition-[width]",
+                            lato.className,
+                            pathname === "/" && "before:w-full after:w-1/2",
+                        )}
                     >
-                        Entre em contato
-                    </Button>
-                </li>
+                        <Link href="/">Início</Link>
+                    </li>
 
-                <li>
-                    <Button type="button" size="lg" onClick={openLoginModal}>
-                        Entrar
-                    </Button>
-                </li>
-            </ul>
+                    <li
+                        className={cn(
+                            "relative text-light-primary text-xl font-medium before:content-[''] before:w-0 before:h-[2px] before:bg-light-primary before:absolute before:-bottom-1 before:right-0 after:content-[''] after:w-0 after:h-[2px] after:bg-light-primary after:absolute after:-bottom-3 after:right-0 hover:before:w-full hover:after:w-1/2 before:transition-[width] after:transition-[width]",
+                            lato.className,
+                            pathname === "/servicos" &&
+                                "before:w-full after:w-1/2",
+                        )}
+                    >
+                        <Link href="/servicos">Serviços</Link>
+                    </li>
+
+                    <li
+                        className={cn(
+                            "text-light-primary text-xl font-medium cursor-pointer",
+                            lato.className,
+                        )}
+                    >
+                        <Popover>
+                            <PopoverTrigger className="flex items-center gap-x-1">
+                                Projetos <ChevronDown size={20} />
+                            </PopoverTrigger>
+
+                            <PopoverContent className="w-52 bg-[#10161F] border-[#10161F]">
+                                <div className="flex flex-col gap-y-4 items-center">
+                                    <Link
+                                        href="/projetos"
+                                        className={cn(
+                                            "text-light-primary/70 font-medium text-base hover:text-light-primary transition",
+                                        )}
+                                    >
+                                        Todos
+                                    </Link>
+
+                                    <Link
+                                        href="/projetos?category=landing-page"
+                                        className={cn(
+                                            "text-light-primary/70 font-medium text-base hover:text-light-primary transition",
+                                        )}
+                                    >
+                                        Landing Page
+                                    </Link>
+
+                                    <Link
+                                        href="/projetos?category=site-institucional"
+                                        className="text-light-primary/70 font-medium text-base hover:text-light-primary transition"
+                                    >
+                                        Site Institucional
+                                    </Link>
+
+                                    <Link
+                                        href="/projetos?category=plataforma"
+                                        className="text-light-primary/70 font-medium text-base hover:text-light-primary transition"
+                                    >
+                                        Plataforma
+                                    </Link>
+                                </div>
+                            </PopoverContent>
+                        </Popover>
+                    </li>
+                </ul>
+
+                <div className="flex items-center justify-end gap-x-5">
+                    {isAuthed ? (
+                        <>
+                            <Button type="button" size="lg" asChild>
+                                <Link href="/dashboard">Dashboard</Link>
+                            </Button>
+
+                            <Button
+                                type="button"
+                                variant="outline"
+                                size="lg"
+                                onClick={() => signOut()}
+                            >
+                                <LogOut />
+                            </Button>
+                        </>
+                    ) : (
+                        <>
+                            <Button
+                                type="button"
+                                variant="outline"
+                                size="lg"
+                                onClick={openContactModal}
+                            >
+                                Entre em contato
+                            </Button>
+
+                            <Button
+                                type="button"
+                                size="lg"
+                                onClick={openLoginModal}
+                            >
+                                Entrar
+                            </Button>
+                        </>
+                    )}
+                </div>
+            </div>
         </header>
     );
 };

@@ -2,9 +2,12 @@
 
 import { z } from "zod";
 import { useState } from "react";
+import toast from "react-hot-toast";
+import InputMask from "react-input-mask";
+import { signIn } from "next-auth/react";
 import { useForm } from "react-hook-form";
-import { EyeIcon, EyeOffIcon, Loader2Icon } from "lucide-react";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { EyeIcon, EyeOffIcon, Loader2Icon } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import useModalStore from "@/stores/useModalStore";
@@ -22,7 +25,6 @@ import {
 } from "@/components/ui/form";
 import { useTRPC } from "@/trpc/client";
 import { useMutation } from "@tanstack/react-query";
-import toast from "react-hot-toast";
 
 export const RegisterForm = () => {
     const [passwordVisibility, setPasswordVisibility] = useState<
@@ -42,7 +44,7 @@ export const RegisterForm = () => {
                 toast.success(data.message);
                 closeRegisterModal();
             },
-        })
+        }),
     );
 
     const form = useForm<z.infer<typeof registerSchema>>({
@@ -104,7 +106,7 @@ export const RegisterForm = () => {
                                     <Input
                                         className={cn(
                                             form.formState.errors.name &&
-                                                "border-destructive focus-visible:shadow-destructive"
+                                                "border-destructive focus-visible:shadow-destructive",
                                         )}
                                         disabled={isPending}
                                         {...field}
@@ -124,14 +126,29 @@ export const RegisterForm = () => {
                                 <FormLabel>Celular</FormLabel>
 
                                 <FormControl>
-                                    <Input
-                                        className={cn(
-                                            form.formState.errors.cel &&
-                                                "border-destructive focus-visible:shadow-destructive"
-                                        )}
+                                    <InputMask
+                                        mask="(99) 99999-9999"
                                         disabled={isPending}
                                         {...field}
-                                    />
+                                    >
+                                        {(inputProps) => (
+                                            <Input
+                                                className={cn(
+                                                    form.formState.errors.cel &&
+                                                        "border-destructive focus-visible:shadow-destructive",
+                                                )}
+                                                {...inputProps}
+                                            />
+                                        )}
+                                    </InputMask>
+
+                                    {/* <Input */}
+                                    {/*     className={cn( */}
+                                    {/*         form.formState.errors.cel && */}
+                                    {/*             "border-destructive focus-visible:shadow-destructive", */}
+                                    {/*     )} */}
+                                    {/*     {...field} */}
+                                    {/* /> */}
                                 </FormControl>
 
                                 <FormMessage />
@@ -150,7 +167,7 @@ export const RegisterForm = () => {
                                     <Input
                                         className={cn(
                                             form.formState.errors.email &&
-                                                "border-destructive focus-visible:shadow-destructive"
+                                                "border-destructive focus-visible:shadow-destructive",
                                         )}
                                         disabled={isPending}
                                         {...field}
@@ -177,7 +194,7 @@ export const RegisterForm = () => {
                                                 "pr-14",
                                                 form.formState.errors
                                                     .password &&
-                                                    "border-destructive focus-visible:shadow-destructive"
+                                                    "border-destructive focus-visible:shadow-destructive",
                                             )}
                                             disabled={isPending}
                                             {...field}
@@ -191,7 +208,7 @@ export const RegisterForm = () => {
                                                 "absolute right-2 top-1/2 -translate-y-1/2",
                                                 form.formState.errors
                                                     .password &&
-                                                    "text-destructive"
+                                                    "text-destructive",
                                             )}
                                             disabled={isPending}
                                             onClick={handlePasswordVisibility}
@@ -226,7 +243,7 @@ export const RegisterForm = () => {
                                                 "pr-14",
                                                 form.formState.errors
                                                     .confirmPassword &&
-                                                    "border-destructive focus-visible:shadow-destructive"
+                                                    "border-destructive focus-visible:shadow-destructive",
                                             )}
                                             disabled={isPending}
                                             {...field}
@@ -240,7 +257,7 @@ export const RegisterForm = () => {
                                                 "absolute right-2 top-1/2 -translate-y-1/2",
                                                 form.formState.errors
                                                     .confirmPassword &&
-                                                    "text-destructive"
+                                                    "text-destructive",
                                             )}
                                             disabled={isPending}
                                             onClick={
