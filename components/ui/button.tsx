@@ -16,13 +16,16 @@ const buttonVariants = cva(
                 outline:
                     "bg-transparent text-light-primary font-semibold text-xl border-2 border-[#2670DF] transition-shadow hover:shadow-[0px_0px_8px_#2670DF] hover:bg-transparent",
                 secondary:
-                    "bg-secondary text-secondary-foreground hover:bg-secondary/80",
-                ghost: "hover:bg-accent hover:text-accent-foreground",
+                    "bg-secondary text-light-primary font-semibold text-xl hover:bg-secondary/80",
+                ghost: "hover:bg-accent text-light-primary font-semibold text-xl hover:text-light-primary",
                 link: "text-primary underline-offset-4 hover:underline",
+                notification:
+                    "bg-gradient-to-b from-[#155FDA] to-[#6E37DE] text-light-primary font-semibold text-lg",
+                nav: "hover:bg-accent text-light-primary font-semibold text-lg hover:text-light-primary",
             },
             size: {
                 default: "h-10 px-5 py-2",
-                sm: "h-9 rounded-md px-3",
+                sm: "h-9 rounded-md px-3 text-base",
                 lg: "h-12 rounded-lg py-2 px-5",
                 icon: "h-10 w-10",
                 link: "h-fit p-0",

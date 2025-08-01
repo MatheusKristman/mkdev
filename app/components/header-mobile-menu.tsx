@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useEffect } from "react";
+import { signOut } from "next-auth/react";
 import { Dot, LogOutIcon, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { usePathname, useSearchParams } from "next/navigation";
@@ -18,7 +19,6 @@ import {
     AccordionItem,
     AccordionTrigger,
 } from "@/components/ui/accordion";
-import { signOut } from "next-auth/react";
 
 interface HeaderMobileMenuProps {
     isAuthed: boolean;
