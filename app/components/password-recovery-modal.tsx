@@ -12,11 +12,51 @@ import {
 } from "@/constants/framer/modal-animation";
 
 import { PasswordRecoveryForm } from "./password-recovery-form";
+import { useTRPC } from "@/trpc/client";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
-export const PasswordRecoveryModal = () => {
-    const { isPasswordRecoveryModalOpen, closePasswordRecoveryModal } =
-        useModalStore();
+interface PasswordRecoveryModalProps {
+    token: string | undefined;
+}
+
+export const PasswordRecoveryModal = ({
+    token,
+}: PasswordRecoveryModalProps) => {
     const [isLoading, setIsLoading] = useState<boolean>(false);
+    const {
+        isPasswordRecoveryModalOpen,
+        openPasswordRecoveryModal,
+        closePasswordRecoveryModal,
+    } = useModalStore();
+
+    const router = useRouter();
+    const trpc = useTRPC();
+
+    const { mutate: verifyRecoveryPasswordToken } = useMutation(
+        trpc.users.verifyRecoveryPasswordToken.mutationOptions({
+            onSuccess: (data) => {
+                openPasswordRecoveryModal();
+            },
+            onError: (error) => {
+                console.error(error);
+
+                switch (error.data?.code) {
+                    case "NOT_FOUND":
+                        toast.error(error.message);
+                        break;
+                    case "UNAUTHORIZED":
+                        toast.error(error.message);
+                        break;
+                    default:
+                        toast.error("Token inválido");
+                }
+
+                router.replace("/");
+            },
+        }),
+    );
 
     useEffect(() => {
         if (isPasswordRecoveryModalOpen) {
@@ -25,6 +65,12 @@ export const PasswordRecoveryModal = () => {
             document.documentElement.style.overflowY = "unset";
         }
     }, [isPasswordRecoveryModalOpen]);
+
+    useEffect(() => {
+        if (token) {
+            verifyRecoveryPasswordToken({ token });
+        }
+    }, [token, verifyRecoveryPasswordToken]);
 
     return (
         <>
@@ -37,7 +83,7 @@ export const PasswordRecoveryModal = () => {
                         variants={overlayAnimation}
                         className={cn(
                             "w-full h-full fixed top-0 bottom-0 left-0 right-0 bg-gray-primary/80 backdrop-blur z-50 py-12 px-6 overflow-y-auto md:px-12 before:content-[''] before:h-full before:inline-block before:align-middle",
-                            "scrollbar scrollbar-thumb-slate-700 scrollbar-thumb-rounded-lg scrollbar-w-2"
+                            "scrollbar scrollbar-thumb-slate-700 scrollbar-thumb-rounded-lg scrollbar-w-2",
                         )}
                     >
                         <motion.div
@@ -65,7 +111,7 @@ export const PasswordRecoveryModal = () => {
                                 </button>
                             </div>
 
-                            <PasswordRecoveryForm />
+                            <PasswordRecoveryForm recoveryToken={token} />
                         </motion.div>
                     </motion.div>
                 )}

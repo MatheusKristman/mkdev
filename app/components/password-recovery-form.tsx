@@ -1,8 +1,16 @@
 "use client";
 
 import { z } from "zod";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { EyeIcon, EyeOffIcon, Loader2Icon } from "lucide-react";
 import { zodResolver } from "@hookform/resolvers/zod";
+
+import { cn } from "@/lib/utils";
+import { recoveryPasswordSchema } from "@/constants/schema/recovery-password-schema";
+
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 import {
     Form,
     FormControl,
@@ -11,51 +19,67 @@ import {
     FormLabel,
     FormMessage,
 } from "@/components/ui/form";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { EyeIcon, EyeOffIcon } from "lucide-react";
-import { cn } from "@/lib/utils";
-import { useState } from "react";
+import { useTRPC } from "@/trpc/client";
+import { useMutation } from "@tanstack/react-query";
+import toast from "react-hot-toast";
+import useModalStore from "@/stores/useModalStore";
+import { useRouter } from "next/navigation";
 
-const formSchema = z
-    .object({
-        newPassword: z
-            .string()
-            .min(1, { message: "Nova senha é obrigatória" })
-            .min(6, {
-                message: "Nova senha precisa ter no mínimo 6 caracteres",
-            }),
-        confirmNewPassword: z
-            .string()
-            .min(1, { message: "Confirmação da nova senha é obrigatória" }),
-    })
-    .superRefine(({ newPassword, confirmNewPassword }, ctx) => {
-        if (confirmNewPassword !== newPassword) {
-            ctx.addIssue({
-                code: "custom",
-                message: "As senhas não coincidem",
-                path: ["confirmNewPassword"],
-            });
-        }
-    });
+interface PasswordRecoveryForm {
+    recoveryToken: string | undefined;
+}
 
-export const PasswordRecoveryForm = () => {
+export const PasswordRecoveryForm = ({
+    recoveryToken,
+}: PasswordRecoveryForm) => {
     const [newPasswordVisibility, setNewPasswordVisibility] = useState<
         "password" | "text"
     >("password");
     const [confirmNewPasswordVisibility, setConfirmNewPasswordVisibility] =
         useState<"password" | "text">("password");
 
-    const form = useForm<z.infer<typeof formSchema>>({
-        resolver: zodResolver(formSchema),
+    const { closePasswordRecoveryModal } = useModalStore();
+
+    const router = useRouter();
+    const trpc = useTRPC();
+
+    const { mutate: recoveryPassword, isPending } = useMutation(
+        trpc.users.recoveryPassword.mutationOptions({
+            onSuccess: (data) => {
+                toast.success(data.message);
+                closePasswordRecoveryModal();
+                router.replace("/");
+            },
+            onError: (error) => {
+                console.error(error);
+
+                switch (error.data?.code) {
+                    case "NOT_FOUND":
+                        toast.error(error.message);
+                        break;
+                    case "UNAUTHORIZED":
+                        toast.error(error.message);
+                        break;
+                    default:
+                        toast.error("Ocorreu um erro ao recuperar a senha");
+                }
+
+                router.replace("/");
+            },
+        }),
+    );
+
+    const form = useForm<z.infer<typeof recoveryPasswordSchema>>({
+        resolver: zodResolver(recoveryPasswordSchema),
         defaultValues: {
+            recoveryToken: recoveryToken ?? "",
             newPassword: "",
             confirmNewPassword: "",
         },
     });
 
-    const onSubmit = (values: z.infer<typeof formSchema>) => {
-        console.log({ values });
+    const onSubmit = (values: z.infer<typeof recoveryPasswordSchema>) => {
+        recoveryPassword(values);
     };
 
     const handleNewPasswordVisibility = () => {
@@ -98,8 +122,9 @@ export const PasswordRecoveryForm = () => {
                                                 "pr-14",
                                                 form.formState.errors
                                                     .newPassword &&
-                                                    "border-destructive focus-visible:shadow-destructive"
+                                                    "border-destructive focus-visible:shadow-destructive",
                                             )}
+                                            disabled={isPending}
                                             {...field}
                                         />
 
@@ -111,8 +136,9 @@ export const PasswordRecoveryForm = () => {
                                                 "absolute right-2 top-1/2 -translate-y-1/2",
                                                 form.formState.errors
                                                     .newPassword &&
-                                                    "text-destructive"
+                                                    "text-destructive",
                                             )}
+                                            disabled={isPending}
                                             onClick={
                                                 handleNewPasswordVisibility
                                             }
@@ -147,8 +173,9 @@ export const PasswordRecoveryForm = () => {
                                                 "pr-14",
                                                 form.formState.errors
                                                     .confirmNewPassword &&
-                                                    "border-destructive focus-visible:shadow-destructive"
+                                                    "border-destructive focus-visible:shadow-destructive",
                                             )}
+                                            disabled={isPending}
                                             {...field}
                                         />
 
@@ -160,8 +187,9 @@ export const PasswordRecoveryForm = () => {
                                                 "absolute right-2 top-1/2 -translate-y-1/2",
                                                 form.formState.errors
                                                     .confirmNewPassword &&
-                                                    "text-destructive"
+                                                    "text-destructive",
                                             )}
+                                            disabled={isPending}
                                             onClick={
                                                 handleConfirmNewPasswordVisibility
                                             }
@@ -182,8 +210,14 @@ export const PasswordRecoveryForm = () => {
                     />
                 </div>
 
-                <Button type="submit" size="lg" className="w-full">
-                    Enviar
+                <Button
+                    type="submit"
+                    size="lg"
+                    className="w-full"
+                    disabled={isPending}
+                >
+                    Enviar{" "}
+                    {isPending && <Loader2Icon className="animate-spin" />}
                 </Button>
             </form>
         </Form>

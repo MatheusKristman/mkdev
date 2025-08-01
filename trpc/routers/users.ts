@@ -1,6 +1,11 @@
+import { z } from "zod";
 import crypto from "crypto";
 import { hash } from "bcryptjs";
+import { eq } from "drizzle-orm";
+import { isAfter } from "date-fns";
 import nodemailer from "nodemailer";
+import { TRPCError } from "@trpc/server";
+import { render } from "@react-email/components";
 
 import { db } from "@/lib/db";
 import { signIn } from "@/auth";
@@ -8,10 +13,9 @@ import { users } from "@/db/schemas";
 import { baseProcedure, createTRPCRouter } from "@/trpc/init";
 import { registerSchema } from "@/constants/schema/register-schema";
 import { forgotPasswordSchema } from "@/constants/schema/forgot-password-schema";
-import { eq } from "drizzle-orm";
-import { TRPCError } from "@trpc/server";
-import { render } from "@react-email/components";
+
 import RecoveryPasswordEmail from "@/emails/recovery-password-email";
+import { recoveryPasswordSchema } from "@/constants/schema/recovery-password-schema";
 
 export const usersRouter = createTRPCRouter({
     register: baseProcedure
@@ -118,5 +122,76 @@ export const usersRouter = createTRPCRouter({
             });
 
             return {};
+        }),
+    verifyRecoveryPasswordToken: baseProcedure
+        .input(
+            z.object({
+                token: z.string().min(1, { message: "Token é obrigatório" }),
+            }),
+        )
+        .mutation(async ({ input }) => {
+            const { token } = input;
+
+            const usersData = await db
+                .select()
+                .from(users)
+                .where(eq(users.passwordRecoveryToken, token));
+
+            const user = usersData[0];
+
+            if (!user || !user.passwordRecoveryExpiresIn) {
+                throw new TRPCError({
+                    code: "NOT_FOUND",
+                    message: "Token não encontrado",
+                });
+            }
+
+            if (isAfter(new Date(), user.passwordRecoveryExpiresIn)) {
+                throw new TRPCError({
+                    code: "UNAUTHORIZED",
+                    message: "Token expirado",
+                });
+            }
+
+            return {};
+        }),
+    recoveryPassword: baseProcedure
+        .input(recoveryPasswordSchema)
+        .mutation(async ({ input }) => {
+            const { newPassword, recoveryToken } = input;
+
+            const usersData = await db
+                .select()
+                .from(users)
+                .where(eq(users.passwordRecoveryToken, recoveryToken));
+
+            const user = usersData[0];
+
+            if (!user || !user.passwordRecoveryExpiresIn) {
+                throw new TRPCError({
+                    code: "NOT_FOUND",
+                    message: "Conta não localizada",
+                });
+            }
+
+            if (isAfter(new Date(), user.passwordRecoveryExpiresIn)) {
+                throw new TRPCError({
+                    code: "UNAUTHORIZED",
+                    message: "Token expirado!",
+                });
+            }
+
+            const hashedPassword = await hash(newPassword, 10);
+
+            await db
+                .update(users)
+                .set({
+                    password: hashedPassword,
+                    passwordRecoveryExpiresIn: null,
+                    passwordRecoveryToken: null,
+                })
+                .where(eq(users.id, user.id));
+
+            return { message: "Senha alterada com sucesso" };
         }),
 });

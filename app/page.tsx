@@ -1,3 +1,5 @@
+import { auth } from "@/auth";
+
 import { Hero } from "./components/hero";
 import { About } from "./components/about";
 import { Header } from "./components/header";
@@ -10,10 +12,14 @@ import { HeaderMobileMenu } from "./components/header-mobile-menu";
 import { ForgotPasswordModal } from "./components/forgot-password-modal";
 import { PasswordRecoveryModal } from "./components/password-recovery-modal";
 import { PasswordRecoveryMessageModal } from "./components/password-recovery-message-modal";
-import { auth } from "@/auth";
 
-export default async function Home() {
+export default async function Home({
+    searchParams,
+}: {
+    searchParams: Promise<{ [key: string]: string | undefined }>;
+}) {
     const session = await auth();
+    const token = (await searchParams).recoveryToken;
 
     return (
         <>
@@ -22,7 +28,7 @@ export default async function Home() {
             <RegisterModal />
             <ForgotPasswordModal />
             <PasswordRecoveryMessageModal />
-            <PasswordRecoveryModal />
+            <PasswordRecoveryModal token={token} />
 
             <div className="w-full h-full bg-hero-mobile bg-no-repeat bg-[length:100%_100%] sm:bg-hero-tablet lg:bg-hero-desktop">
                 <Header isAuthed={!!session} />

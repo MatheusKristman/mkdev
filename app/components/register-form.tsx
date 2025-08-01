@@ -25,6 +25,7 @@ import {
 } from "@/components/ui/form";
 import { useTRPC } from "@/trpc/client";
 import { useMutation } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
 
 export const RegisterForm = () => {
     const [passwordVisibility, setPasswordVisibility] = useState<
@@ -34,8 +35,8 @@ export const RegisterForm = () => {
         "password" | "text"
     >("password");
 
+    const router = useRouter();
     const trpc = useTRPC();
-
     const { closeRegisterModal, openLoginModal } = useModalStore();
 
     const { mutate: register, isPending } = useMutation(
@@ -43,6 +44,7 @@ export const RegisterForm = () => {
             onSuccess: (data) => {
                 toast.success(data.message);
                 closeRegisterModal();
+                router.refresh();
             },
         }),
     );
