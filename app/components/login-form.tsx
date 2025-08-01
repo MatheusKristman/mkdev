@@ -1,7 +1,7 @@
 "use client";
 
 import { z } from "zod";
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import toast from "react-hot-toast";
 import { signIn } from "next-auth/react";
 import { useForm } from "react-hook-form";
@@ -24,11 +24,15 @@ import {
 } from "@/components/ui/form";
 import { useRouter } from "next/navigation";
 
-export const LoginForm = () => {
+interface LoginFormProps {
+    isLoading: boolean;
+    setIsLoading: Dispatch<SetStateAction<boolean>>;
+}
+
+export const LoginForm = ({ isLoading, setIsLoading }: LoginFormProps) => {
     const [passwordVisibility, setPasswordVisibility] = useState<
         "password" | "text"
     >("password");
-    const [isLoading, setIsLoading] = useState<boolean>(false);
 
     const { closeLoginModal, openRegisterModal, openForgotPasswordModal } =
         useModalStore();
@@ -57,7 +61,7 @@ export const LoginForm = () => {
             }
 
             closeLoginModal();
-            router.refresh();
+            router.push("/dashboard");
         } catch (error) {
             console.error("Erro no login: ", error);
         } finally {

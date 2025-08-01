@@ -12,10 +12,20 @@ import {
 } from "@/constants/framer/modal-animation";
 
 import { LoginForm } from "./login-form";
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
-export const LoginModal = () => {
+interface LoginModalProps {
+    notLogged: string | undefined;
+}
+
+export const LoginModal = ({ notLogged }: LoginModalProps) => {
     const { isLoginModalOpen, closeLoginModal } = useModalStore();
     const [isLoading, setIsLoading] = useState<boolean>(false);
+
+    const { openLoginModal } = useModalStore();
+
+    const router = useRouter();
 
     useEffect(() => {
         if (isLoginModalOpen) {
@@ -24,6 +34,14 @@ export const LoginModal = () => {
             document.documentElement.style.overflowY = "unset";
         }
     }, [isLoginModalOpen]);
+
+    useEffect(() => {
+        if (notLogged) {
+            openLoginModal();
+            toast.error("Acesso não autorizado, faça o login!");
+            router.replace("/");
+        }
+    }, [notLogged, router, openLoginModal]);
 
     return (
         <>
@@ -36,7 +54,7 @@ export const LoginModal = () => {
                         variants={overlayAnimation}
                         className={cn(
                             "w-full h-full fixed top-0 bottom-0 left-0 right-0 bg-gray-primary/80 backdrop-blur z-50 py-12 px-6 overflow-y-auto md:px-12 before:content-[''] before:h-full before:inline-block before:align-middle",
-                            "scrollbar scrollbar-thumb-slate-700 scrollbar-thumb-rounded-lg scrollbar-w-2"
+                            "scrollbar scrollbar-thumb-slate-700 scrollbar-thumb-rounded-lg scrollbar-w-2",
                         )}
                     >
                         <motion.div
@@ -64,7 +82,10 @@ export const LoginModal = () => {
                                 </button>
                             </div>
 
-                            <LoginForm />
+                            <LoginForm
+                                isLoading={isLoading}
+                                setIsLoading={setIsLoading}
+                            />
                         </motion.div>
                     </motion.div>
                 )}

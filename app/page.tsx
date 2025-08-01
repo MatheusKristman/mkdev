@@ -19,12 +19,14 @@ export default async function Home({
     searchParams: Promise<{ [key: string]: string | undefined }>;
 }) {
     const session = await auth();
-    const token = (await searchParams).recoveryToken;
+    const params = await searchParams;
+    const token = params.recoveryToken;
+    const notLogged = params.notLogged;
 
     return (
         <>
             <ContactModal />
-            <LoginModal />
+            <LoginModal notLogged={notLogged} />
             <RegisterModal />
             <ForgotPasswordModal />
             <PasswordRecoveryMessageModal />
